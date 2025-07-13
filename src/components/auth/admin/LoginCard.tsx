@@ -15,10 +15,10 @@ interface LoginCardProps {
   isLoading: boolean;
   demoCredentials?: Array<{
     label: string;
-    username: string;
+    username: string; // Keep as username for backward compatibility
     password: string;
   }>;
-  onDemoLogin: (username: string, password: string) => void;
+  onDemoLogin: (email: string, password: string) => void;
 }
 
 export function LoginCard({ 

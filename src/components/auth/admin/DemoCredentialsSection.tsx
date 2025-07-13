@@ -4,13 +4,13 @@ import { Button } from "@/components/ui/button";
 
 interface DemoCredential {
   label: string;
-  username: string;
+  username: string; // Keep as username for backward compatibility in interface
   password: string;
 }
 
 interface DemoCredentialsSectionProps {
   demoCredentials: DemoCredential[];
-  onDemoLogin: (username: string, password: string) => void;
+  onDemoLogin: (email: string, password: string) => void;
 }
 
 export function DemoCredentialsSection({ demoCredentials, onDemoLogin }: DemoCredentialsSectionProps) {

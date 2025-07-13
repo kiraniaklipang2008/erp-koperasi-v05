@@ -22,7 +22,7 @@ export function useLoginForm({ onSuccessRedirect }: UseLoginFormProps) {
   const form = useForm<FormValues>({
     resolver: zodResolver(adminLoginFormSchema),
     defaultValues: {
-      username: "",
+      email: "",
       password: "",
     },
   });
@@ -32,7 +32,7 @@ export function useLoginForm({ onSuccessRedirect }: UseLoginFormProps) {
     setIsLoading(true);
     
     try {
-      const user = await loginUser(values.username, values.password);
+      const user = await loginUser(values.email, values.password);
       console.log("Login successful, user data:", user);
       
       toast({
@@ -47,7 +47,7 @@ export function useLoginForm({ onSuccessRedirect }: UseLoginFormProps) {
       console.error("Login error:", error);
       toast({
         title: "Login failed",
-        description: error.message || "Username or password is incorrect",
+        description: error.message || "Email or password is incorrect",
         variant: "destructive",
       });
     } finally {
@@ -55,9 +55,9 @@ export function useLoginForm({ onSuccessRedirect }: UseLoginFormProps) {
     }
   }
 
-  const handleDemoLogin = (username: string, password: string) => {
-    console.log("Demo login with:", { username, password });
-    form.setValue("username", username);
+  const handleDemoLogin = (email: string, password: string) => {
+    console.log("Demo login with:", { email, password });
+    form.setValue("email", email);
     form.setValue("password", password);
     
     // Auto-submit the form with demo credentials

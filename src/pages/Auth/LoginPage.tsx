@@ -3,15 +3,15 @@ import { LoginForm } from "@/components/auth/admin/LoginForm";
 
 export default function LoginPage() {
   const demoCredentials = [
-    { label: "Superadmin", username: "superadmin", password: "password123" },
-    { label: "Admin", username: "admin", password: "password123" },
-    { label: "Demo Quick Login", username: "demo", password: "demo" },
+    { label: "Super Admin", username: "adminkpri@email.com", password: "password123" },
+    { label: "Admin", username: "admin@email.com", password: "password123" },
+    { label: "Demo Quick Login", username: "demo@email.com", password: "demo" },
   ];
 
   return (
     <LoginForm
       title="KPRI BANGUN"
-      subtitle="Login Admin - Gunakan demo/demo untuk akses cepat"
+      subtitle="Login Admin - Gunakan demo@email.com/demo untuk akses cepat"
       demoCredentials={demoCredentials}
       onSuccessRedirect="/dashboard"
     />

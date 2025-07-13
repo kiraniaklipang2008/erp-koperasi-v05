@@ -7,74 +7,161 @@ import { storeSession, clearSession } from "@/utils/secureStorage";
 import { generateSecureToken } from "@/utils/security";
 import { isLockedOut, recordFailedAttempt, clearFailedAttempts } from "./rateLimiting";
 import { getCurrentUser } from "./sessionManagement";
+import { supabase } from "@/integrations/supabase/client";
 
 /**
- * Login function with security improvements
+ * Login function with email authentication
  */
-export const loginUser = async (username: string, password: string): Promise<ExtendedUser> => {
-  console.log("Attempting secure login for:", username);
+export const loginUser = async (email: string, password: string): Promise<ExtendedUser> => {
+  console.log("Attempting login for:", email);
   
   // Check for lockout
-  if (isLockedOut(username)) {
+  if (isLockedOut(email)) {
     throw new Error("Account temporarily locked due to too many failed attempts. Please try again later.");
   }
 
   try {
-    const users = getUsers();
-    const user = users.find(user => user.username === username);
-    
-    if (!user) {
-      recordFailedAttempt(username);
-      throw new Error("Invalid username or password");
+    // Demo credentials handling
+    if (email === "adminkpri@email.com" && password === "password123") {
+      // Get or create profile for super admin
+      let { data: profile, error: profileError } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('email', email)
+        .single();
+
+      if (!profile) {
+        // Create profile if it doesn't exist
+        const { data: newProfile, error: createError } = await supabase
+          .from('profiles')
+          .insert({
+            id: `uuid-${Date.now()}`,
+            email: email,
+            username: 'adminkpri',
+            nama: 'Admin KPRI',
+            role_id: 'role_superadmin',
+            aktif: true
+          })
+          .select('*')
+          .single();
+
+        if (createError) throw createError;
+        profile = newProfile;
+      }
+
+      // Get role information
+      const { data: role } = await supabase
+        .from('roles')
+        .select('*')
+        .eq('id', 'role_superadmin')
+        .single();
+
+      const extendedUser: ExtendedUser = {
+        id: profile.id,
+        username: profile.username || email,
+        nama: profile.nama,
+        email: profile.email,
+        roleId: profile.role_id,
+        aktif: profile.aktif,
+        lastLogin: new Date().toISOString(),
+        createdAt: profile.created_at,
+        updatedAt: profile.updated_at,
+        role: role ? {
+          id: role.id,
+          name: role.name,
+          permissions: role.permissions || ['*']
+        } : {
+          id: 'role_superadmin',
+          name: 'Super Admin',
+          permissions: ['*']
+        }
+      };
+
+      // Store session locally for compatibility
+      const token = generateSecureToken();
+      const refreshToken = generateSecureToken();
+      storeSession(profile.id, token, refreshToken);
+
+      clearFailedAttempts(email);
+      
+      // Log audit entry for successful login
+      const { logAuditEntry } = await import("../auditService");
+      logAuditEntry(
+        "LOGIN",
+        "SYSTEM",
+        `Login berhasil untuk user: ${email}`,
+        profile.id
+      );
+
+      return extendedUser;
     }
 
-    // In production, verify against hashed password
-    // For demo purposes, we'll accept the original demo passwords temporarily
-    const isValidPassword = password === "password123" || password === "demo";
-    
-    if (!isValidPassword) {
-      recordFailedAttempt(username);
-      throw new Error("Invalid username or password");
+    // Try other demo credentials
+    if ((email === "admin@email.com" && password === "password123") || 
+        (email === "demo@email.com" && password === "demo")) {
+      
+      let { data: profile } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('email', email)
+        .single();
+
+      if (!profile) {
+        const { data: newProfile } = await supabase
+          .from('profiles')
+          .insert({
+            id: `uuid-${Date.now()}-${email.split('@')[0]}`,
+            email: email,
+            username: email.split('@')[0],
+            nama: email === "admin@email.com" ? 'Admin' : 'Demo User',
+            role_id: email === "admin@email.com" ? 'role_admin' : 'role_anggota',
+            aktif: true
+          })
+          .select('*')
+          .single();
+        
+        profile = newProfile;
+      }
+
+      if (profile) {
+        // Get role information
+        const { data: role } = await supabase
+          .from('roles')
+          .select('*')
+          .eq('id', profile.role_id)
+          .single();
+
+        const extendedUser: ExtendedUser = {
+          id: profile.id,
+          username: profile.username || email,
+          nama: profile.nama,
+          email: profile.email,
+          roleId: profile.role_id,
+          aktif: profile.aktif,
+          lastLogin: new Date().toISOString(),
+          createdAt: profile.created_at,
+          updatedAt: profile.updated_at,
+          role: role ? {
+            id: role.id,
+            name: role.name,
+            permissions: role.permissions || []
+          } : undefined
+        };
+
+        const token = generateSecureToken();
+        const refreshToken = generateSecureToken();
+        storeSession(profile.id, token, refreshToken);
+
+        clearFailedAttempts(email);
+        return extendedUser;
+      }
     }
 
-    // Clear failed attempts on successful login
-    clearFailedAttempts(username);
-    
-    // Generate secure tokens
-    const token = generateSecureToken();
-    const refreshToken = generateSecureToken();
-    
-    // Store secure session
-    storeSession(user.id, token, refreshToken);
-    
-    // Update last login time
-    user.lastLogin = new Date().toISOString();
-    
-    // Get role information
-    const role = user.roleId ? getRoleById(user.roleId) : undefined;
-    
-    const extendedUser: ExtendedUser = {
-      ...user,
-      role: role ? {
-        id: role.id,
-        name: role.name,
-        permissions: role.permissions
-      } : undefined
-    };
-    
-    // Log audit entry for successful login
-    const { logAuditEntry } = await import("../auditService");
-    logAuditEntry(
-      "LOGIN",
-      "SYSTEM",
-      `Login berhasil untuk user: ${username}`,
-      user.id
-    );
-    
-    console.log("Secure login successful for:", username);
-    return extendedUser;
+    recordFailedAttempt(email);
+    throw new Error("Invalid email or password");
   } catch (error) {
     console.error("Login error:", error);
+    recordFailedAttempt(email);
     throw error;
   }
 };

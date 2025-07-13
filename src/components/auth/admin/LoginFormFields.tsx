@@ -11,7 +11,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { UsernameInput } from "./UsernameInput";
+import { EmailInput } from "./EmailInput";
 import { adminLoginFormSchema } from "./formSchema";
 
 type FormValues = z.infer<typeof adminLoginFormSchema>;
@@ -28,12 +28,12 @@ export function LoginFormFields({ form, onSubmit, isLoading }: LoginFormFieldsPr
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 sm:space-y-5">
         <FormField
           control={form.control}
-          name="username"
+          name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-koperasi-dark/80 font-medium">Username</FormLabel>
+              <FormLabel className="text-koperasi-dark/80 font-medium">Email</FormLabel>
               <FormControl>
-                <UsernameInput field={field} />
+                <EmailInput field={field} />
               </FormControl>
               <FormMessage />
             </FormItem>

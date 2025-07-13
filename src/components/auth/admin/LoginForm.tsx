@@ -11,7 +11,7 @@ interface LoginFormProps {
   onSuccessRedirect?: string;
   demoCredentials?: Array<{
     label: string;
-    username: string;
+    username: string; // Keep as username for backward compatibility  
     password: string;
   }>;
 }
@@ -24,10 +24,8 @@ export function LoginForm({
 }: LoginFormProps) {
   const [zoomScale, setZoomScale] = useState(1);
   
-  // Filter demo credentials to show only Admin and Demo Quick Login
-  const filteredDemoCredentials = demoCredentials?.filter(cred => 
-    cred.label === "Admin" || cred.label === "Demo Quick Login"
-  );
+  // Show all demo credentials including Super Admin
+  const filteredDemoCredentials = demoCredentials;
   
   const { form, onSubmit, isLoading, handleDemoLogin } = useLoginForm({
     onSuccessRedirect,
