@@ -27,7 +27,18 @@ export const getAuthState = (): AuthState => {
     extendSession();
   }
 
-  // Get user data
+  // Handle demo users specially - they don't exist in database
+  if (session.userId.startsWith('demo-')) {
+    const extendedUser = getDemoUser(session.userId);
+    if (extendedUser) {
+      return {
+        currentUser: extendedUser,
+        isAuthenticated: true
+      };
+    }
+  }
+
+  // Get user data for real users
   const user = getUserById(session.userId);
   if (!user) {
     clearSession();
@@ -53,6 +64,67 @@ export const getAuthState = (): AuthState => {
     currentUser: extendedUser,
     isAuthenticated: true
   };
+};
+
+/**
+ * Get demo user data
+ */
+const getDemoUser = (userId: string): ExtendedUser | null => {
+  switch (userId) {
+    case "demo-superadmin-001":
+      return {
+        id: "demo-superadmin-001",
+        username: 'adminkpri',
+        nama: 'Admin KPRI Super',
+        email: 'adminkpri@email.com',
+        roleId: 'role_superadmin',
+        aktif: true,
+        lastLogin: new Date().toISOString(),
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        role: {
+          id: 'role_superadmin',
+          name: 'Super Admin',
+          permissions: ['*']
+        }
+      };
+    case "demo-admin-002":
+      return {
+        id: "demo-admin-002",
+        username: 'admin',
+        nama: 'Admin',
+        email: 'admin@email.com',
+        roleId: 'role_admin',
+        aktif: true,
+        lastLogin: new Date().toISOString(),
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        role: {
+          id: 'role_admin',
+          name: 'Admin',
+          permissions: ['users:read', 'users:create', 'users:update', 'anggota:create', 'transaksi:create']
+        }
+      };
+    case "demo-user-003":
+      return {
+        id: "demo-user-003",
+        username: 'demo',
+        nama: 'Demo User',
+        email: 'demo@email.com',
+        roleId: 'role_anggota',
+        aktif: true,
+        lastLogin: new Date().toISOString(),
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        role: {
+          id: 'role_anggota',
+          name: 'Anggota',
+          permissions: ['view_own_data']
+        }
+      };
+    default:
+      return null;
+  }
 };
 
 /**
