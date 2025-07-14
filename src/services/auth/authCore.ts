@@ -15,50 +15,148 @@ import { supabase } from "@/integrations/supabase/client";
 export const loginUser = async (email: string, password: string): Promise<ExtendedUser> => {
   console.log("Attempting login for:", email);
   
-  // Check for lockout
+  // Check for lockout first and clear if needed for demo accounts
   if (isLockedOut(email)) {
-    throw new Error("Account temporarily locked due to too many failed attempts. Please try again later.");
+    // Clear lockout for demo accounts
+    if (email === "adminkpri@email.com" || email === "admin@email.com" || email === "demo@email.com") {
+      clearFailedAttempts(email);
+    } else {
+      throw new Error("Account temporarily locked due to too many failed attempts. Please try again later.");
+    }
   }
 
   try {
-    // Demo credentials handling
+    // Demo credentials handling - create fake user objects without database dependency
     if (email === "adminkpri@email.com" && password === "password123") {
-      // Get or create profile for super admin
-      let { data: profile, error: profileError } = await supabase
+      const extendedUser: ExtendedUser = {
+        id: "demo-superadmin-001",
+        username: 'adminkpri',
+        nama: 'Admin KPRI Super',
+        email: email,
+        roleId: 'role_superadmin',
+        aktif: true,
+        lastLogin: new Date().toISOString(),
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        role: {
+          id: 'role_superadmin',
+          name: 'Super Admin',
+          permissions: ['*']
+        }
+      };
+
+      // Store session locally for compatibility
+      const token = generateSecureToken();
+      const refreshToken = generateSecureToken();
+      storeSession(extendedUser.id, token, refreshToken);
+
+      clearFailedAttempts(email);
+      
+      // Log audit entry for successful login
+      try {
+        const { logAuditEntry } = await import("../auditService");
+        logAuditEntry(
+          "LOGIN",
+          "SYSTEM",
+          `Demo login berhasil untuk Super Admin: ${email}`,
+          extendedUser.id
+        );
+      } catch (auditError) {
+        console.log("Audit logging failed, but continuing with login:", auditError);
+      }
+
+      console.log("Demo Super Admin login successful for:", email);
+      return extendedUser;
+    }
+
+    if (email === "admin@email.com" && password === "password123") {
+      const extendedUser: ExtendedUser = {
+        id: "demo-admin-002",
+        username: 'admin',
+        nama: 'Admin',
+        email: email,
+        roleId: 'role_admin',
+        aktif: true,
+        lastLogin: new Date().toISOString(),
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        role: {
+          id: 'role_admin',
+          name: 'Admin',
+          permissions: ['users:read', 'users:create', 'users:update', 'anggota:create', 'transaksi:create']
+        }
+      };
+
+      const token = generateSecureToken();
+      const refreshToken = generateSecureToken();
+      storeSession(extendedUser.id, token, refreshToken);
+
+      clearFailedAttempts(email);
+      console.log("Demo Admin login successful for:", email);
+      return extendedUser;
+    }
+
+    if (email === "demo@email.com" && password === "demo") {
+      const extendedUser: ExtendedUser = {
+        id: "demo-user-003",
+        username: 'demo',
+        nama: 'Demo User',
+        email: email,
+        roleId: 'role_anggota',
+        aktif: true,
+        lastLogin: new Date().toISOString(),
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        role: {
+          id: 'role_anggota',
+          name: 'Anggota',
+          permissions: ['view_own_data']
+        }
+      };
+
+      const token = generateSecureToken();
+      const refreshToken = generateSecureToken();
+      storeSession(extendedUser.id, token, refreshToken);
+
+      clearFailedAttempts(email);
+      console.log("Demo User login successful for:", email);
+      return extendedUser;
+    }
+
+    // For real users, try Supabase authentication
+    try {
+      const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      });
+
+      if (authError) {
+        recordFailedAttempt(email);
+        throw new Error("Invalid email or password");
+      }
+
+      // Get user profile from database
+      const { data: profile, error: profileError } = await supabase
         .from('profiles')
         .select('*')
-        .eq('email', email)
+        .eq('id', authData.user.id)
         .single();
 
-      if (!profile) {
-        // Create profile if it doesn't exist
-        const { data: newProfile, error: createError } = await supabase
-          .from('profiles')
-          .insert({
-            id: `uuid-${Date.now()}`,
-            email: email,
-            username: 'adminkpri',
-            nama: 'Admin KPRI',
-            role_id: 'role_superadmin',
-            aktif: true
-          })
-          .select('*')
-          .single();
-
-        if (createError) throw createError;
-        profile = newProfile;
+      if (profileError) {
+        recordFailedAttempt(email);
+        throw new Error("Profile not found");
       }
 
       // Get role information
       const { data: role } = await supabase
         .from('roles')
         .select('*')
-        .eq('id', 'role_superadmin')
+        .eq('id', profile.role_id)
         .single();
 
       const extendedUser: ExtendedUser = {
         id: profile.id,
-        username: profile.username || email,
+        username: profile.username || profile.email,
         nama: profile.nama,
         email: profile.email,
         roleId: profile.role_id,
@@ -69,100 +167,26 @@ export const loginUser = async (email: string, password: string): Promise<Extend
         role: role ? {
           id: role.id,
           name: role.name,
-          permissions: role.permissions || ['*']
-        } : {
-          id: 'role_superadmin',
-          name: 'Super Admin',
-          permissions: ['*']
-        }
+          permissions: role.permissions || []
+        } : undefined
       };
 
-      // Store session locally for compatibility
-      const token = generateSecureToken();
-      const refreshToken = generateSecureToken();
-      storeSession(profile.id, token, refreshToken);
-
       clearFailedAttempts(email);
-      
-      // Log audit entry for successful login
-      const { logAuditEntry } = await import("../auditService");
-      logAuditEntry(
-        "LOGIN",
-        "SYSTEM",
-        `Login berhasil untuk user: ${email}`,
-        profile.id
-      );
-
       return extendedUser;
+
+    } catch (supabaseError) {
+      console.log("Supabase auth failed:", supabaseError);
+      recordFailedAttempt(email);
+      throw new Error("Invalid email or password");
     }
 
-    // Try other demo credentials
-    if ((email === "admin@email.com" && password === "password123") || 
-        (email === "demo@email.com" && password === "demo")) {
-      
-      let { data: profile } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('email', email)
-        .single();
-
-      if (!profile) {
-        const { data: newProfile } = await supabase
-          .from('profiles')
-          .insert({
-            id: `uuid-${Date.now()}-${email.split('@')[0]}`,
-            email: email,
-            username: email.split('@')[0],
-            nama: email === "admin@email.com" ? 'Admin' : 'Demo User',
-            role_id: email === "admin@email.com" ? 'role_admin' : 'role_anggota',
-            aktif: true
-          })
-          .select('*')
-          .single();
-        
-        profile = newProfile;
-      }
-
-      if (profile) {
-        // Get role information
-        const { data: role } = await supabase
-          .from('roles')
-          .select('*')
-          .eq('id', profile.role_id)
-          .single();
-
-        const extendedUser: ExtendedUser = {
-          id: profile.id,
-          username: profile.username || email,
-          nama: profile.nama,
-          email: profile.email,
-          roleId: profile.role_id,
-          aktif: profile.aktif,
-          lastLogin: new Date().toISOString(),
-          createdAt: profile.created_at,
-          updatedAt: profile.updated_at,
-          role: role ? {
-            id: role.id,
-            name: role.name,
-            permissions: role.permissions || []
-          } : undefined
-        };
-
-        const token = generateSecureToken();
-        const refreshToken = generateSecureToken();
-        storeSession(profile.id, token, refreshToken);
-
-        clearFailedAttempts(email);
-        return extendedUser;
-      }
-    }
-
-    recordFailedAttempt(email);
-    throw new Error("Invalid email or password");
   } catch (error) {
     console.error("Login error:", error);
+    if (error instanceof Error) {
+      throw error;
+    }
     recordFailedAttempt(email);
-    throw error;
+    throw new Error("Login failed");
   }
 };
 
