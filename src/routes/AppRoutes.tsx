@@ -98,6 +98,11 @@ import LaporanRugiLaba from '@/pages/POS/LaporanRugiLaba';
 import ReturPOS from '@/pages/POS/ReturPOS';
 import RiwayatTransaksi from '@/pages/POS/RiwayatTransaksi';
 
+// Manufaktur
+import BOMList from '@/pages/Manufaktur/BOMList';
+import BOMForm from '@/pages/Manufaktur/BOMForm';
+import BOMDetail from '@/pages/Manufaktur/BOMDetail';
+
 export function AppRoutes() {
   return (
     <Routes>
@@ -510,6 +515,20 @@ export function AppRoutes() {
         <AuthGuard>
           <POSIndex />
         </AuthGuard>
+      } />
+
+      {/* Manufaktur Routes */}
+      <Route path="/manufaktur/bom/tambah" element={
+        <AuthGuard><BOMForm /></AuthGuard>
+      } />
+      <Route path="/manufaktur/bom/:id/edit" element={
+        <AuthGuard><BOMForm /></AuthGuard>
+      } />
+      <Route path="/manufaktur/bom/:id" element={
+        <AuthGuard><BOMDetail /></AuthGuard>
+      } />
+      <Route path="/manufaktur/bom" element={
+        <AuthGuard><BOMList /></AuthGuard>
       } />
 
       {/* Import Routes */}

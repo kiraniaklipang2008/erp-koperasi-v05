@@ -37,7 +37,9 @@ import {
   ShoppingBasket,
   TrendingDown,
   UserCog,
-  RotateCcw
+  RotateCcw,
+  Factory,
+  ClipboardList
 } from "lucide-react";
 
 export type MenuItemType = {
@@ -162,6 +164,14 @@ export const menuSections: MenuSectionType[] = [
       { title: "Jurnal Umum", path: "/akuntansi/jurnal-umum", icon: Receipt },
       { title: "Buku Besar", path: "/akuntansi/buku-besar", icon: BookOpen },
       { title: "Laporan Keuangan", path: "/akuntansi/laporan-keuangan", icon: FileBarChart }
+    ]
+  },
+  {
+    title: "Manufaktur",
+    icon: Factory,
+    tabs: ['manufaktur'],
+    items: [
+      { title: "Bill of Materials", path: "/manufaktur/bom", icon: ClipboardList },
     ]
   },
   {
