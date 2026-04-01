@@ -46,7 +46,7 @@ export function ManufakturPlaceholder() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-muted-foreground">BOM Aktif</p>
-                <p className="text-3xl font-bold text-green-600">{activeBOM}</p>
+                <p className="text-3xl font-bold text-primary">{activeBOM}</p>
               </div>
               <Badge variant="default">{activeBOM} Active</Badge>
             </div>
