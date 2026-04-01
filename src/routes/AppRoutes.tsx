@@ -534,7 +534,7 @@ export function AppRoutes() {
         <AuthGuard><BOMList /></AuthGuard>
       } />
 
-      {/* Work Order Routes */}
+      {/* Manufaktur - Work Order Routes */}
       <Route path="/manufaktur/work-orders/tambah" element={
         <AuthGuard><WorkOrderForm /></AuthGuard>
       } />
