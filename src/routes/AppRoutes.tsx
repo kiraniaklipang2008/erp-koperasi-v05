@@ -105,6 +105,13 @@ import BOMDetail from '@/pages/Manufaktur/BOMDetail';
 import WorkOrderList from '@/pages/Manufaktur/WorkOrderList';
 import WorkOrderForm from '@/pages/Manufaktur/WorkOrderForm';
 import WorkOrderDetail from '@/pages/Manufaktur/WorkOrderDetail';
+import ProductionPlanList from '@/pages/Manufaktur/ProductionPlanList';
+import ProductionPlanForm from '@/pages/Manufaktur/ProductionPlanForm';
+import ProductionPlanDetail from '@/pages/Manufaktur/ProductionPlanDetail';
+import QualityControlList from '@/pages/Manufaktur/QualityControlList';
+import QualityControlForm from '@/pages/Manufaktur/QualityControlForm';
+import QualityControlDetail from '@/pages/Manufaktur/QualityControlDetail';
+import InventoryList from '@/pages/Manufaktur/InventoryList';
 
 export function AppRoutes() {
   return (
