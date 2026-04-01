@@ -39,7 +39,8 @@ import {
   UserCog,
   RotateCcw,
   Factory,
-  ClipboardList
+  ClipboardList,
+  Wrench
 } from "lucide-react";
 
 export type MenuItemType = {
