@@ -37,7 +37,9 @@ import {
   ShoppingBasket,
   TrendingDown,
   UserCog,
-  RotateCcw
+  RotateCcw,
+  Factory,
+  ClipboardList
 } from "lucide-react";
 
 export type MenuItemType = {
