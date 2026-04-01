@@ -43,3 +43,32 @@ export const BOM_CATEGORIES = [
 export const MATERIAL_UNITS = [
   'pcs', 'kg', 'gram', 'liter', 'ml', 'meter', 'cm', 'lembar', 'batang', 'set', 'pack', 'roll',
 ];
+
+// ===== Work Orders =====
+
+export type WOStatus = 'Draft' | 'In Progress' | 'Completed' | 'Cancelled';
+export type WOPriority = 'Low' | 'Medium' | 'High' | 'Urgent';
+
+export interface WorkOrder {
+  id: string;
+  code: string; // WO-001, WO-002, etc.
+  bomId: string;
+  bomCode: string;
+  productName: string;
+  quantity: number;
+  unit: string;
+  status: WOStatus;
+  priority: WOPriority;
+  startDate: string;
+  dueDate: string;
+  completedDate?: string;
+  assignedTo?: string;
+  notes?: string;
+  estimatedCost: number;
+  actualCost?: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export const WO_STATUSES: WOStatus[] = ['Draft', 'In Progress', 'Completed', 'Cancelled'];
+export const WO_PRIORITIES: WOPriority[] = ['Low', 'Medium', 'High', 'Urgent'];

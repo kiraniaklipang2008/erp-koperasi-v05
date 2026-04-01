@@ -39,7 +39,8 @@ import {
   UserCog,
   RotateCcw,
   Factory,
-  ClipboardList
+  ClipboardList,
+  Wrench
 } from "lucide-react";
 
 export type MenuItemType = {
@@ -172,6 +173,7 @@ export const menuSections: MenuSectionType[] = [
     tabs: ['manufaktur'],
     items: [
       { title: "Bill of Materials", path: "/manufaktur/bom", icon: ClipboardList },
+      { title: "Work Orders", path: "/manufaktur/work-orders", icon: Wrench },
     ]
   },
   {

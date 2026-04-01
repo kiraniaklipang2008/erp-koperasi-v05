@@ -102,6 +102,9 @@ import RiwayatTransaksi from '@/pages/POS/RiwayatTransaksi';
 import BOMList from '@/pages/Manufaktur/BOMList';
 import BOMForm from '@/pages/Manufaktur/BOMForm';
 import BOMDetail from '@/pages/Manufaktur/BOMDetail';
+import WorkOrderList from '@/pages/Manufaktur/WorkOrderList';
+import WorkOrderForm from '@/pages/Manufaktur/WorkOrderForm';
+import WorkOrderDetail from '@/pages/Manufaktur/WorkOrderDetail';
 
 export function AppRoutes() {
   return (
@@ -529,6 +532,20 @@ export function AppRoutes() {
       } />
       <Route path="/manufaktur/bom" element={
         <AuthGuard><BOMList /></AuthGuard>
+      } />
+
+      {/* Work Order Routes */}
+      <Route path="/manufaktur/work-orders/tambah" element={
+        <AuthGuard><WorkOrderForm /></AuthGuard>
+      } />
+      <Route path="/manufaktur/work-orders/:id/edit" element={
+        <AuthGuard><WorkOrderForm /></AuthGuard>
+      } />
+      <Route path="/manufaktur/work-orders/:id" element={
+        <AuthGuard><WorkOrderDetail /></AuthGuard>
+      } />
+      <Route path="/manufaktur/work-orders" element={
+        <AuthGuard><WorkOrderList /></AuthGuard>
       } />
 
       {/* Import Routes */}
