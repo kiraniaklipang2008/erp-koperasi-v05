@@ -105,6 +105,13 @@ import BOMDetail from '@/pages/Manufaktur/BOMDetail';
 import WorkOrderList from '@/pages/Manufaktur/WorkOrderList';
 import WorkOrderForm from '@/pages/Manufaktur/WorkOrderForm';
 import WorkOrderDetail from '@/pages/Manufaktur/WorkOrderDetail';
+import ProductionPlanList from '@/pages/Manufaktur/ProductionPlanList';
+import ProductionPlanForm from '@/pages/Manufaktur/ProductionPlanForm';
+import ProductionPlanDetail from '@/pages/Manufaktur/ProductionPlanDetail';
+import QualityControlList from '@/pages/Manufaktur/QualityControlList';
+import QualityControlForm from '@/pages/Manufaktur/QualityControlForm';
+import QualityControlDetail from '@/pages/Manufaktur/QualityControlDetail';
+import InventoryList from '@/pages/Manufaktur/InventoryList';
 
 export function AppRoutes() {
   return (
@@ -548,7 +555,39 @@ export function AppRoutes() {
         <AuthGuard><WorkOrderList /></AuthGuard>
       } />
 
-      {/* Import Routes */}
+      {/* Manufaktur - Production Planning Routes */}
+      <Route path="/manufaktur/production-plans/tambah" element={
+        <AuthGuard><ProductionPlanForm /></AuthGuard>
+      } />
+      <Route path="/manufaktur/production-plans/:id/edit" element={
+        <AuthGuard><ProductionPlanForm /></AuthGuard>
+      } />
+      <Route path="/manufaktur/production-plans/:id" element={
+        <AuthGuard><ProductionPlanDetail /></AuthGuard>
+      } />
+      <Route path="/manufaktur/production-plans" element={
+        <AuthGuard><ProductionPlanList /></AuthGuard>
+      } />
+
+      {/* Manufaktur - Quality Control Routes */}
+      <Route path="/manufaktur/quality-control/tambah" element={
+        <AuthGuard><QualityControlForm /></AuthGuard>
+      } />
+      <Route path="/manufaktur/quality-control/:id/edit" element={
+        <AuthGuard><QualityControlForm /></AuthGuard>
+      } />
+      <Route path="/manufaktur/quality-control/:id" element={
+        <AuthGuard><QualityControlDetail /></AuthGuard>
+      } />
+      <Route path="/manufaktur/quality-control" element={
+        <AuthGuard><QualityControlList /></AuthGuard>
+      } />
+
+      {/* Manufaktur - Inventory Routes */}
+      <Route path="/manufaktur/inventory" element={
+        <AuthGuard><InventoryList /></AuthGuard>
+      } />
+
       <Route path="/import/anggota" element={
         <AuthGuard>
           <ImportAnggota />

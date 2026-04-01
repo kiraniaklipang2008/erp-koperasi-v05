@@ -72,3 +72,113 @@ export interface WorkOrder {
 
 export const WO_STATUSES: WOStatus[] = ['Draft', 'In Progress', 'Completed', 'Cancelled'];
 export const WO_PRIORITIES: WOPriority[] = ['Low', 'Medium', 'High', 'Urgent'];
+
+// ===== Production Planning =====
+
+export type PPStatus = 'Draft' | 'Confirmed' | 'In Production' | 'Completed' | 'Cancelled';
+
+export interface ProductionPlan {
+  id: string;
+  code: string; // PP-001
+  name: string;
+  description?: string;
+  workOrderIds: string[]; // linked WOs
+  startDate: string;
+  endDate: string;
+  status: PPStatus;
+  targetOutput: number;
+  actualOutput: number;
+  outputUnit: string;
+  shift?: string;
+  supervisor?: string;
+  notes?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export const PP_STATUSES: PPStatus[] = ['Draft', 'Confirmed', 'In Production', 'Completed', 'Cancelled'];
+
+// ===== Quality Control =====
+
+export type QCStatus = 'Pending' | 'Passed' | 'Failed' | 'Conditional';
+export type QCType = 'Incoming' | 'In-Process' | 'Final';
+
+export interface QCCheckItem {
+  id: string;
+  parameter: string;
+  standard: string;
+  actual: string;
+  passed: boolean;
+  notes?: string;
+}
+
+export interface QualityControl {
+  id: string;
+  code: string; // QC-001
+  type: QCType;
+  workOrderId?: string;
+  workOrderCode?: string;
+  productName: string;
+  productCode: string;
+  batchNumber?: string;
+  inspectionDate: string;
+  inspector: string;
+  sampleSize: number;
+  defectsFound: number;
+  status: QCStatus;
+  checkItems: QCCheckItem[];
+  overallNotes?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export const QC_STATUSES: QCStatus[] = ['Pending', 'Passed', 'Failed', 'Conditional'];
+export const QC_TYPES: QCType[] = ['Incoming', 'In-Process', 'Final'];
+
+// ===== Inventory Management (Manufaktur) =====
+
+export type StockMovementType = 'In' | 'Out' | 'Adjustment';
+
+export interface ManufakturInventory {
+  id: string;
+  materialCode: string;
+  materialName: string;
+  category: string;
+  unit: string;
+  currentStock: number;
+  minimumStock: number;
+  maximumStock?: number;
+  unitCost: number;
+  totalValue: number;
+  location?: string;
+  lastRestocked?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface StockMovement {
+  id: string;
+  inventoryId: string;
+  materialCode: string;
+  materialName: string;
+  type: StockMovementType;
+  quantity: number;
+  previousStock: number;
+  newStock: number;
+  referenceType?: 'WorkOrder' | 'Purchase' | 'Manual';
+  referenceId?: string;
+  referenceCode?: string;
+  notes?: string;
+  performedBy?: string;
+  createdAt: string;
+}
+
+export const STOCK_MOVEMENT_TYPES: StockMovementType[] = ['In', 'Out', 'Adjustment'];
+
+export const INVENTORY_CATEGORIES = [
+  'Bahan Baku',
+  'Bahan Penolong',
+  'Kemasan',
+  'Suku Cadang',
+  'Lainnya',
+];

@@ -40,7 +40,10 @@ import {
   RotateCcw,
   Factory,
   ClipboardList,
-  Wrench
+  Wrench,
+  CalendarRange,
+  CheckSquare,
+  Warehouse
 } from "lucide-react";
 
 export type MenuItemType = {
@@ -174,6 +177,9 @@ export const menuSections: MenuSectionType[] = [
     items: [
       { title: "Bill of Materials", path: "/manufaktur/bom", icon: ClipboardList },
       { title: "Work Orders", path: "/manufaktur/work-orders", icon: Wrench },
+      { title: "Production Planning", path: "/manufaktur/production-plans", icon: CalendarRange },
+      { title: "Quality Control", path: "/manufaktur/quality-control", icon: CheckSquare },
+      { title: "Inventory", path: "/manufaktur/inventory", icon: Warehouse },
     ]
   },
   {
