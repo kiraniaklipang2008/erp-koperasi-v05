@@ -84,6 +84,7 @@ export const menuSections: MenuSectionType[] = [
   {
     title: "Koperasi",
     icon: PiggyBank,
+    tabs: ['koperasi'],
     items: [
       { 
         title: "Transaksi", 
