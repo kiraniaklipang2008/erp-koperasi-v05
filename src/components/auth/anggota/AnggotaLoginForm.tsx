@@ -173,7 +173,7 @@ export function AnggotaLoginForm() {
           </div>
           
           <p className="text-xs text-center text-muted-foreground mt-3 sm:mt-4 leading-relaxed">
-            Sistem Koperasi Pegawai Republik Indonesia
+            Enterprise Resource Planning Koperasi
           </p>
         </CardFooter>
       </Card>
