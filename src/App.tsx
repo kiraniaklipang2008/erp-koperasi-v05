@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { AppRoutes } from '@/routes/AppRoutes';
 import { initializeCentralizedSync } from './services/sync/centralizedSyncService';
 import { seedDemoData } from './services/seedDataService';
+import { seedManufakturData } from './services/manufaktur/seedManufakturData';
 import { BusinessTabProvider } from './contexts/BusinessTabContext';
 
 function App() {
