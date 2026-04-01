@@ -90,7 +90,7 @@ export function AnggotaLoginForm() {
         
         <CardHeader className="space-y-1 text-center pb-2 relative z-10 px-4 sm:px-6 pt-6 sm:pt-8">
           <CardTitle className="text-xl sm:text-2xl font-bold tracking-tight">
-            KPRI BANGUN
+            Koperasi-ERP
           </CardTitle>
           <CardDescription className="text-sm sm:text-base">
             Login Anggota

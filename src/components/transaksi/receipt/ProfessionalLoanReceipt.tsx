@@ -19,9 +19,9 @@ export const ProfessionalLoanReceipt = forwardRef<HTMLDivElement, ProfessionalLo
     const pengaturan = getPengaturan();
     const defaultOfficerName = getDefaultOfficerName();
     const profilKoperasi = pengaturan.profil || {
-      namaKoperasi: "KPRI Bangun - Godong",
-      alamat: "Jl. Katamso, Kec. Godong, Kab. Grobogan",
-      telepon: "0812345678"
+      namaKoperasi: "Koperasi-ERP",
+      alamat: "",
+      telepon: ""
     };
     
     // Extract loan details from keterangan

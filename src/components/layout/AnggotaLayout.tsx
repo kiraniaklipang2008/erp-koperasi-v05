@@ -137,7 +137,7 @@ export default function AnggotaLayout({ children, pageTitle }: AnggotaLayoutProp
       
       <footer className="bg-white border-t py-3 sm:py-4 text-center text-xs sm:text-sm text-gray-500 mt-8">
         <div className="container mx-auto">
-          <p>© {new Date().getFullYear()} KPRI Bangun. Hak Cipta Dilindungi.</p>
+          <p>© {new Date().getFullYear()} Koperasi-ERP. Hak Cipta Dilindungi.</p>
         </div>
       </footer>
     </div>

@@ -15,9 +15,9 @@ interface ProfilKoperasiSettingsProps {
 }
 
 export function ProfilKoperasiSettings({ settings, setSettings }: ProfilKoperasiSettingsProps) {
-  const [namaKoperasi, setNamaKoperasi] = useState(settings.profil?.namaKoperasi || "KPRI Bangun - Godong");
-  const [alamat, setAlamat] = useState(settings.profil?.alamat || "Jl. Katamso, Kec. Godong, Kab. Grobogan");
-  const [telepon, setTelepon] = useState(settings.profil?.telepon || "0812345678");
+  const [namaKoperasi, setNamaKoperasi] = useState(settings.profil?.namaKoperasi || "Koperasi-ERP");
+  const [alamat, setAlamat] = useState(settings.profil?.alamat || "");
+  const [telepon, setTelepon] = useState(settings.profil?.telepon || "");
   const [isEditing, setIsEditing] = useState(false);
 
   const handleSave = () => {

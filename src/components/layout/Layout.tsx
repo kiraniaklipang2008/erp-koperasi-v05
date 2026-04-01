@@ -14,7 +14,7 @@ type LayoutProps = {
 
 export default function Layout({ children, pageTitle }: LayoutProps) {
   // Set document title when page changes
-  document.title = `${pageTitle} | KPRI Bangun Godong`;
+  document.title = `${pageTitle} | Koperasi-ERP`;
   
   const handleZoomChange = (scale: number) => {
     document.body.style.zoom = scale.toString();
