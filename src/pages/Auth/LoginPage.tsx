@@ -10,7 +10,7 @@ export default function LoginPage() {
 
   return (
     <LoginForm
-      title="KPRI BANGUN"
+      title="Koperasi-ERP"
       subtitle="Login Admin - Gunakan demo@email.com/demo untuk akses cepat"
       demoCredentials={demoCredentials}
       onSuccessRedirect="/dashboard"

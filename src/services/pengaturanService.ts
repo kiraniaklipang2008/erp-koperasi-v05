@@ -78,9 +78,9 @@ const initialPengaturan: Pengaturan = {
     customVariables: [] // Reset to empty array
   },
   profil: {
-    namaKoperasi: "KPRI Bangun - Godong",
-    alamat: "Jl. Katamso, Kec. Godong, Kab. Grobogan",
-    telepon: "0812345678"
+    namaKoperasi: "Koperasi-ERP",
+    alamat: "",
+    telepon: ""
   },
   notifications: {
     emailEnabled: true,

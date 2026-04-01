@@ -53,7 +53,7 @@ export function LoginCard({
       {/* Footer */}
       <CardFooter className="px-4 sm:px-6 md:px-8 pb-6 sm:pb-8">
         <p className="text-xs text-center text-koperasi-gray leading-relaxed w-full">
-          KPRI Bangun Godong @2025 - All rights reserved
+          Koperasi-ERP @2025 - All rights reserved
         </p>
       </CardFooter>
     </Card>
