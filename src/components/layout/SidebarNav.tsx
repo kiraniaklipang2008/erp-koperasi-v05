@@ -19,7 +19,7 @@ import { cn } from "@/lib/utils";
 
 export function SidebarNav() {
   const location = useLocation();
-  const { activeTab } = useBusinessTab();
+  const { activeTab, setActiveTab } = useBusinessTab();
 
   // Filter menu sections by active business tab
   const visibleMenuSections = menuSections.filter(section => {
