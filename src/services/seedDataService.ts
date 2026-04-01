@@ -3,6 +3,7 @@ import { getFromLocalStorage, saveToLocalStorage } from "@/utils/localStorage";
 import { createPengajuan, approvePengajuan, getPengajuanList } from "./pengajuanService";
 import { createTransaksi } from "./transaksiService";
 import { getAllTransaksi } from "./transaksi/transaksiCore";
+import { seedManufakturData } from "./manufaktur/seedManufakturData";
 
 const SEED_KEY = "koperasi_seed_v1_done";
 
