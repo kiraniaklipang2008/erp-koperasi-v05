@@ -98,6 +98,11 @@ import LaporanRugiLaba from '@/pages/POS/LaporanRugiLaba';
 import ReturPOS from '@/pages/POS/ReturPOS';
 import RiwayatTransaksi from '@/pages/POS/RiwayatTransaksi';
 
+// Manufaktur
+import BOMList from '@/pages/Manufaktur/BOMList';
+import BOMForm from '@/pages/Manufaktur/BOMForm';
+import BOMDetail from '@/pages/Manufaktur/BOMDetail';
+
 export function AppRoutes() {
   return (
     <Routes>
