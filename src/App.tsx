@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { AppRoutes } from '@/routes/AppRoutes';
 import { initializeCentralizedSync } from './services/sync/centralizedSyncService';
 import { seedDemoData } from './services/seedDataService';
+import { BusinessTabProvider } from './contexts/BusinessTabContext';
 
 function App() {
   const initializeApp = async () => {
@@ -20,9 +21,11 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
-      <AppRoutes />
-    </div>
+    <BusinessTabProvider>
+      <div className="min-h-screen bg-background">
+        <AppRoutes />
+      </div>
+    </BusinessTabProvider>
   );
 }
 
