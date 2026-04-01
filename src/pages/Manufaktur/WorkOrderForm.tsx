@@ -11,7 +11,7 @@ import { Save, ArrowLeft } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { createWorkOrder, getWorkOrderById, updateWorkOrder } from "@/services/manufaktur/workOrderService";
 import { getAllBOM } from "@/services/manufaktur/bomService";
-import { BOM, WO_PRIORITIES, WOStatus } from "@/types/manufaktur";
+import { BOM, WO_PRIORITIES, WOStatus, WOPriority } from "@/types/manufaktur";
 import { toast } from "sonner";
 
 export default function WorkOrderForm() {
