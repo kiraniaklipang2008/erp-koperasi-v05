@@ -1,13 +1,12 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import Layout from "@/components/layout/Layout";
 import { KoperasiVisualDashboard } from '@/components/dashboard/KoperasiVisualDashboard';
 import { RetailDashboard } from '@/components/dashboard/RetailDashboard';
 import { ManufakturPlaceholder } from '@/components/dashboard/ManufakturPlaceholder';
 import { Building2, Store, Factory } from 'lucide-react';
 import { cn } from '@/lib/utils';
-
-type BusinessTab = 'koperasi' | 'retail' | 'manufaktur';
+import { useBusinessTab, BusinessTab } from '@/contexts/BusinessTabContext';
 
 const tabs = [
   { id: 'koperasi' as const, label: 'Koperasi', icon: Building2, description: 'Simpan Pinjam & Keuangan' },
@@ -16,7 +15,7 @@ const tabs = [
 ];
 
 export default function VisualDashboard() {
-  const [activeTab, setActiveTab] = useState<BusinessTab>('koperasi');
+  const { activeTab, setActiveTab } = useBusinessTab();
 
   return (
     <Layout pageTitle="Dashboard">

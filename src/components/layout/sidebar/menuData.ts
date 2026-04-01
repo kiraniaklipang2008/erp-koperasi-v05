@@ -52,6 +52,8 @@ export type MenuSectionType = {
   icon: React.ElementType;
   items: MenuItemType[];
   hidden?: boolean;
+  /** Which business tabs this section is visible in. Undefined = all tabs. */
+  tabs?: ('koperasi' | 'retail' | 'manufaktur')[];
 };
 
 export const menuSections: MenuSectionType[] = [
@@ -65,6 +67,7 @@ export const menuSections: MenuSectionType[] = [
   {
     title: "Master Data",
     icon: List,
+    tabs: ['koperasi'],
     items: [
       { 
         title: "Unit Kerja", 
@@ -81,6 +84,7 @@ export const menuSections: MenuSectionType[] = [
   {
     title: "Koperasi",
     icon: PiggyBank,
+    tabs: ['koperasi'],
     items: [
       { 
         title: "Transaksi", 
@@ -109,9 +113,9 @@ export const menuSections: MenuSectionType[] = [
     ]
   },
   {
-    title: "KPRI Mart",
+    title: "Retail / POS",
     icon: Store,
-    hidden: true,
+    tabs: ['retail'],
     items: [
       { title: "Dashboard POS", path: "/pos", icon: LayoutDashboard },
       { 
@@ -151,6 +155,7 @@ export const menuSections: MenuSectionType[] = [
   {
     title: "Akuntansi",
     icon: Calculator,
+    tabs: ['koperasi'],
     items: [
       { title: "Manajemen Akuntansi", path: "/akuntansi", icon: Layout },
       { title: "Chart of Accounts", path: "/akuntansi/chart-of-accounts", icon: Book },
