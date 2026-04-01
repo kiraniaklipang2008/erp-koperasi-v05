@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 interface DemoCredential {
   label: string;
-  username: string; // Keep as username for backward compatibility in interface
+  username: string;
   password: string;
 }
 
@@ -16,7 +16,7 @@ interface DemoCredentialsSectionProps {
 export function DemoCredentialsSection({ demoCredentials, onDemoLogin }: DemoCredentialsSectionProps) {
   return (
     <>
-      <div className="relative w-full my-4">
+      <div className="relative w-full my-2">
         <div className="absolute inset-0 flex items-center">
           <span className="w-full border-t border-gray-200"></span>
         </div>
@@ -27,16 +27,16 @@ export function DemoCredentialsSection({ demoCredentials, onDemoLogin }: DemoCre
         </div>
       </div>
       
-      <div className="space-y-2">
+      <div className="flex gap-2">
         {demoCredentials.map((credential, index) => (
           <Button
             key={index}
             variant="outline"
             onClick={() => onDemoLogin(credential.username, credential.password)}
-            className="w-full text-xs sm:text-sm h-9 sm:h-10 border-koperasi-green/30 bg-koperasi-green/5 hover:bg-koperasi-green/10 text-koperasi-dark hover:text-koperasi-dark transition-all"
+            className="flex-1 text-xs h-8 border-koperasi-green/30 bg-koperasi-green/5 hover:bg-koperasi-green/10 text-koperasi-dark hover:text-koperasi-dark transition-all px-2"
           >
-            <Shield className="mr-2 h-3 w-3 sm:h-4 sm:w-4" />
-            {credential.label}
+            <Shield className="mr-1 h-3 w-3 flex-shrink-0" />
+            <span className="truncate">{credential.label}</span>
           </Button>
         ))}
       </div>

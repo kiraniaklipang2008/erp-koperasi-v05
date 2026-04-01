@@ -3,7 +3,7 @@ import { CreditCard, Shield, TrendingUp, Users } from "lucide-react";
 
 export function LoginBranding() {
   return (
-    <div className="hidden lg:flex flex-col justify-center space-y-6 px-6" style={{ marginTop: '30px' }}>
+    <div className="hidden lg:flex flex-col justify-center space-y-6 px-6" style={{ marginTop: '-70px' }}>
       {/* Header Section */}
       <div className="space-y-4">
         <div className="flex items-center space-x-4">

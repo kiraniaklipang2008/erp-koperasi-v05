@@ -15,7 +15,7 @@ interface LoginCardProps {
   isLoading: boolean;
   demoCredentials?: Array<{
     label: string;
-    username: string; // Keep as username for backward compatibility
+    username: string;
     password: string;
   }>;
   onDemoLogin: (email: string, password: string) => void;
@@ -32,16 +32,15 @@ export function LoginCard({
     <Card className="border-0 shadow-lg sm:shadow-2xl bg-white/90 backdrop-blur-sm mx-2 sm:mx-0">
       <LoginHeader />
       
-      <CardContent className="px-4 sm:px-6 md:px-8 pb-4 sm:pb-6">
+      <CardContent className="px-4 sm:px-6 md:px-8 pb-3 pt-0">
         <LoginFormFields 
           form={form}
           onSubmit={onSubmit}
           isLoading={isLoading}
         />
         
-        {/* Demo Credentials Section */}
         {demoCredentials && (
-          <div className="mt-2 sm:mt-2.5">
+          <div className="mt-2">
             <DemoCredentialsSection 
               demoCredentials={demoCredentials}
               onDemoLogin={onDemoLogin}
@@ -50,8 +49,7 @@ export function LoginCard({
         )}
       </CardContent>
       
-      {/* Footer */}
-      <CardFooter className="px-4 sm:px-6 md:px-8 pb-6 sm:pb-8">
+      <CardFooter className="px-4 sm:px-6 md:px-8 pb-4 pt-0">
         <p className="text-xs text-center text-koperasi-gray leading-relaxed w-full">
           Koperasi-ERP @2025 - All rights reserved
         </p>
