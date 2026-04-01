@@ -167,6 +167,7 @@ export const menuSections: MenuSectionType[] = [
   {
     title: "Pengaturan",
     icon: Settings,
+    tabs: ['koperasi'],
     items: [
       { title: "Pengaturan Koperasi", path: "/pengaturan", icon: Cog },
       { title: "Pengguna dan Peran", path: "/pengaturan/pengguna-peran", icon: Users },
@@ -178,6 +179,7 @@ export const menuSections: MenuSectionType[] = [
   {
     title: "Impor Data",
     icon: Upload,
+    tabs: ['koperasi'],
     items: [
       { title: "Impor Anggota", path: "/import/anggota", icon: FileSpreadsheet },
       { title: "Impor Transaksi", path: "/import/transaksi", icon: FileSpreadsheet }
