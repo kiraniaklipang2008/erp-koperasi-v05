@@ -14,12 +14,18 @@ import { SidebarMenuSection } from "./sidebar/SidebarMenuSection";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Link } from "react-router-dom";
+import { useBusinessTab } from "@/contexts/BusinessTabContext";
 
 export function SidebarNav() {
   const location = useLocation();
+  const { activeTab } = useBusinessTab();
 
-  // Filter out hidden menu sections
-  const visibleMenuSections = menuSections.filter(section => !section.hidden);
+  // Filter menu sections by active business tab
+  const visibleMenuSections = menuSections.filter(section => {
+    if (section.hidden) return false;
+    if (!section.tabs) return true; // no tab restriction = show in all
+    return section.tabs.includes(activeTab);
+  });
 
   return (
     <Sidebar 
@@ -35,7 +41,7 @@ export function SidebarNav() {
               <PiggyBank className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 text-white flex-shrink-0" />
             </div>
             <h1 className="text-base sm:text-lg md:text-xl font-bold text-white truncate group-data-[collapsible=icon]:hidden drop-shadow-sm">
-              Koperasiku
+              Koperasi-ERP
             </h1>
             <SidebarTrigger className="ml-auto h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 flex-shrink-0 text-white hover:bg-white/20 hover:text-white rounded-lg backdrop-blur-sm transition-all duration-200" />
           </div>
@@ -66,7 +72,7 @@ export function SidebarNav() {
               <Separator className="my-4 sm:my-5 bg-gray-200" />
             </div>
             
-            {/* Regular Menu Sections - Show only visible sections */}
+            {/* Regular Menu Sections - filtered by active business tab */}
             <div className="space-y-2 sm:space-y-3">
               {visibleMenuSections.map((section, index) => (
                 <SidebarMenuSection 
