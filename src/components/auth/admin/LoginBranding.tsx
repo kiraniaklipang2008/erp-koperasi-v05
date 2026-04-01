@@ -12,9 +12,9 @@ export function LoginBranding() {
           </div>
           <div>
             <h1 className="text-2xl font-bold text-koperasi-dark leading-tight">
-              Koperasi Pegawai<br />
-              Republik Indonesia
+              ERP Koperasi
             </h1>
+            <p className="text-sm text-koperasi-gray">Enterprise Resource Planning Koperasi</p>
           </div>
         </div>
         <p className="text-lg text-koperasi-gray font-medium">
