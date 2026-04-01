@@ -128,7 +128,7 @@ export default function WorkOrderForm() {
             </div>
             <div className="space-y-2">
               <Label>Prioritas</Label>
-              <Select value={form.priority} onValueChange={(v) => setForm((f) => ({ ...f, priority: v }))}>
+              <Select value={form.priority} onValueChange={(v) => setForm((f) => ({ ...f, priority: v as WOPriority }))}>
                 <SelectTrigger><SelectValue /></SelectTrigger>
                 <SelectContent>
                   {WO_PRIORITIES.map((p) => (<SelectItem key={p} value={p}>{p}</SelectItem>))}
