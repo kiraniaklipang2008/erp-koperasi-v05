@@ -40,7 +40,10 @@ import {
   RotateCcw,
   Factory,
   ClipboardList,
-  Wrench
+  Wrench,
+  CalendarRange,
+  CheckSquare,
+  Warehouse
 } from "lucide-react";
 
 export type MenuItemType = {
