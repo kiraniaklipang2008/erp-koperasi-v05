@@ -534,6 +534,20 @@ export function AppRoutes() {
         <AuthGuard><BOMList /></AuthGuard>
       } />
 
+      {/* Work Order Routes */}
+      <Route path="/manufaktur/work-orders/tambah" element={
+        <AuthGuard><WorkOrderForm /></AuthGuard>
+      } />
+      <Route path="/manufaktur/work-orders/:id/edit" element={
+        <AuthGuard><WorkOrderForm /></AuthGuard>
+      } />
+      <Route path="/manufaktur/work-orders/:id" element={
+        <AuthGuard><WorkOrderDetail /></AuthGuard>
+      } />
+      <Route path="/manufaktur/work-orders" element={
+        <AuthGuard><WorkOrderList /></AuthGuard>
+      } />
+
       {/* Import Routes */}
       <Route path="/import/anggota" element={
         <AuthGuard>

@@ -172,6 +172,7 @@ export const menuSections: MenuSectionType[] = [
     tabs: ['manufaktur'],
     items: [
       { title: "Bill of Materials", path: "/manufaktur/bom", icon: ClipboardList },
+      { title: "Work Orders", path: "/manufaktur/work-orders", icon: Wrench },
     ]
   },
   {
