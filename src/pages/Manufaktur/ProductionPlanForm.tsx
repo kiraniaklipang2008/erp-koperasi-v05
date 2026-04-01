@@ -31,7 +31,7 @@ export default function ProductionPlanForm() {
   useEffect(() => {
     if (isEdit && id) {
       const plan = getProductionPlanById(id);
-      if (plan) setForm({ ...plan });
+      if (plan) setForm({ name: plan.name, description: plan.description || '', startDate: plan.startDate, endDate: plan.endDate, status: plan.status, targetOutput: plan.targetOutput, actualOutput: plan.actualOutput, outputUnit: plan.outputUnit, shift: plan.shift || '', supervisor: plan.supervisor || '', notes: plan.notes || '', workOrderIds: plan.workOrderIds });
       else { toast.error('Plan tidak ditemukan'); navigate('/manufaktur/production-plans'); }
     }
   }, [id]);

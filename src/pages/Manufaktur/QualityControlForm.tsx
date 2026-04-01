@@ -33,7 +33,7 @@ export default function QualityControlForm() {
   useEffect(() => {
     if (isEdit && id) {
       const qc = getQualityControlById(id);
-      if (qc) setForm({ ...qc });
+      if (qc) setForm({ type: qc.type, workOrderId: qc.workOrderId || '', workOrderCode: qc.workOrderCode || '', productName: qc.productName, productCode: qc.productCode, batchNumber: qc.batchNumber || '', inspectionDate: qc.inspectionDate, inspector: qc.inspector, sampleSize: qc.sampleSize, defectsFound: qc.defectsFound, status: qc.status, overallNotes: qc.overallNotes || '', checkItems: qc.checkItems });
       else { toast.error('QC tidak ditemukan'); navigate('/manufaktur/quality-control'); }
     }
   }, [id]);
