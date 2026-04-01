@@ -555,7 +555,39 @@ export function AppRoutes() {
         <AuthGuard><WorkOrderList /></AuthGuard>
       } />
 
-      {/* Import Routes */}
+      {/* Manufaktur - Production Planning Routes */}
+      <Route path="/manufaktur/production-plans/tambah" element={
+        <AuthGuard><ProductionPlanForm /></AuthGuard>
+      } />
+      <Route path="/manufaktur/production-plans/:id/edit" element={
+        <AuthGuard><ProductionPlanForm /></AuthGuard>
+      } />
+      <Route path="/manufaktur/production-plans/:id" element={
+        <AuthGuard><ProductionPlanDetail /></AuthGuard>
+      } />
+      <Route path="/manufaktur/production-plans" element={
+        <AuthGuard><ProductionPlanList /></AuthGuard>
+      } />
+
+      {/* Manufaktur - Quality Control Routes */}
+      <Route path="/manufaktur/quality-control/tambah" element={
+        <AuthGuard><QualityControlForm /></AuthGuard>
+      } />
+      <Route path="/manufaktur/quality-control/:id/edit" element={
+        <AuthGuard><QualityControlForm /></AuthGuard>
+      } />
+      <Route path="/manufaktur/quality-control/:id" element={
+        <AuthGuard><QualityControlDetail /></AuthGuard>
+      } />
+      <Route path="/manufaktur/quality-control" element={
+        <AuthGuard><QualityControlList /></AuthGuard>
+      } />
+
+      {/* Manufaktur - Inventory Routes */}
+      <Route path="/manufaktur/inventory" element={
+        <AuthGuard><InventoryList /></AuthGuard>
+      } />
+
       <Route path="/import/anggota" element={
         <AuthGuard>
           <ImportAnggota />
