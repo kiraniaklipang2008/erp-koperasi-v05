@@ -67,6 +67,7 @@ export const menuSections: MenuSectionType[] = [
   {
     title: "Master Data",
     icon: List,
+    tabs: ['koperasi'],
     items: [
       { 
         title: "Unit Kerja", 
