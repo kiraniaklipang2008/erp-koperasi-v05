@@ -7,18 +7,18 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Table,
   TableBody,
-  TableCell,
   TableHead,
   TableHeader,
   TableRow,
+  TableCell,
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
-import { Plus, Search, Eye, Edit, Trash2 } from "lucide-react";
+import { Plus, Search } from "lucide-react";
 import { getAllTransaksi, deleteTransaksi } from "@/services/transaksiService";
 import { useToast } from "@/hooks/use-toast";
 import { formatCurrency } from "@/utils/formatters";
 import { Transaksi } from "@/types";
+import { ExpandableTransaksiRow } from "@/components/transaksi/ExpandableTransaksiRow";
 
 export default function SimpanList() {
   const { toast } = useToast();
@@ -42,16 +42,14 @@ export default function SimpanList() {
 
   const filterData = () => {
     let filtered = transaksiList;
-
     if (searchTerm) {
       filtered = filtered.filter(
-        (transaksi) =>
-          transaksi.anggotaNama.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          transaksi.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          (transaksi.kategori && transaksi.kategori.toLowerCase().includes(searchTerm.toLowerCase()))
+        (t) =>
+          t.anggotaNama.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          t.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          (t.kategori && t.kategori.toLowerCase().includes(searchTerm.toLowerCase()))
       );
     }
-
     setFilteredList(filtered);
   };
 
@@ -59,24 +57,15 @@ export default function SimpanList() {
     if (window.confirm("Apakah Anda yakin ingin menghapus transaksi ini?")) {
       const success = deleteTransaksi(id);
       if (success) {
-        toast({
-          title: "Transaksi berhasil dihapus",
-          description: "Data simpanan telah dihapus dari sistem"
-        });
+        toast({ title: "Transaksi berhasil dihapus", description: "Data simpanan telah dihapus dari sistem" });
         loadSimpananData();
       } else {
-        toast({
-          title: "Gagal menghapus transaksi",
-          description: "Terjadi kesalahan saat menghapus data",
-          variant: "destructive"
-        });
+        toast({ title: "Gagal menghapus transaksi", description: "Terjadi kesalahan saat menghapus data", variant: "destructive" });
       }
     }
   };
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("id-ID");
-  };
+  const headers = ["ID Transaksi", "Tanggal", "Nama Anggota", "Kategori", "Jumlah", "Status", "Aksi"];
 
   return (
     <Layout pageTitle="Daftar Simpanan">
@@ -94,7 +83,7 @@ export default function SimpanList() {
         <CardHeader>
           <CardTitle>Transaksi Simpanan</CardTitle>
           <div className="flex items-center space-x-2">
-            <Search className="w-4 h-4 text-gray-400" />
+            <Search className="w-4 h-4 text-muted-foreground" />
             <Input
               placeholder="Cari berdasarkan nama anggota, ID transaksi, atau kategori..."
               value={searchTerm}
@@ -108,68 +97,28 @@ export default function SimpanList() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>ID Transaksi</TableHead>
-                  <TableHead>Tanggal</TableHead>
-                  <TableHead>Nama Anggota</TableHead>
-                  <TableHead>Kategori</TableHead>
-                  <TableHead>Jumlah</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Aksi</TableHead>
+                  <TableHead className="w-8" />
+                  {headers.map((h) => (
+                    <TableHead key={h}>{h}</TableHead>
+                  ))}
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {filteredList.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={7} className="text-center py-10">
+                    <TableCell colSpan={headers.length + 1} className="text-center py-10">
                       {searchTerm ? "Tidak ada data yang sesuai dengan pencarian" : "Belum ada data simpanan"}
                     </TableCell>
                   </TableRow>
                 ) : (
                   filteredList.map((transaksi) => (
-                    <TableRow key={transaksi.id}>
-                      <TableCell className="font-medium">{transaksi.id}</TableCell>
-                      <TableCell>{formatDate(transaksi.tanggal)}</TableCell>
-                      <TableCell>{transaksi.anggotaNama}</TableCell>
-                      <TableCell>{transaksi.kategori || "Umum"}</TableCell>
-                      <TableCell className="font-semibold text-green-600">
-                        {formatCurrency(transaksi.jumlah)}
-                      </TableCell>
-                      <TableCell>
-                        <Badge
-                          variant={
-                            transaksi.status === "Sukses"
-                              ? "default"
-                              : transaksi.status === "Pending"
-                              ? "secondary"
-                              : "destructive"
-                          }
-                        >
-                          {transaksi.status}
-                        </Badge>
-                      </TableCell>
-                      <TableCell>
-                        <div className="flex space-x-2">
-                          <Button asChild variant="ghost" size="sm">
-                            <Link to={`/transaksi/simpan/${transaksi.id}`}>
-                              <Eye className="w-4 h-4" />
-                            </Link>
-                          </Button>
-                          <Button asChild variant="ghost" size="sm">
-                            <Link to={`/transaksi/simpan/edit/${transaksi.id}`}>
-                              <Edit className="w-4 h-4" />
-                            </Link>
-                          </Button>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleDelete(transaksi.id)}
-                            className="text-red-600 hover:text-red-800"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </Button>
-                        </div>
-                      </TableCell>
-                    </TableRow>
+                    <ExpandableTransaksiRow
+                      key={transaksi.id}
+                      transaksi={transaksi}
+                      type="simpan"
+                      onDelete={handleDelete}
+                      colSpan={headers.length}
+                    />
                   ))
                 )}
               </TableBody>
