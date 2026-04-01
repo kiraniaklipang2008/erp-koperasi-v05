@@ -1,6 +1,6 @@
 
 import { useLocation } from "react-router-dom";
-import { LogOut, PiggyBank, Zap } from "lucide-react";
+import { LogOut, PiggyBank, Zap, Building2, Store, Factory } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
