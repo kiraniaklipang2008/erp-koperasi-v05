@@ -52,6 +52,8 @@ export type MenuSectionType = {
   icon: React.ElementType;
   items: MenuItemType[];
   hidden?: boolean;
+  /** Which business tabs this section is visible in. Undefined = all tabs. */
+  tabs?: ('koperasi' | 'retail' | 'manufaktur')[];
 };
 
 export const menuSections: MenuSectionType[] = [
