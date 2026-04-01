@@ -167,6 +167,7 @@ export const menuSections: MenuSectionType[] = [
   {
     title: "Pengaturan",
     icon: Settings,
+    tabs: ['koperasi'],
     items: [
       { title: "Pengaturan Koperasi", path: "/pengaturan", icon: Cog },
       { title: "Pengguna dan Peran", path: "/pengaturan/pengguna-peran", icon: Users },
