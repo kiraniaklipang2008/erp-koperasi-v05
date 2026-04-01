@@ -517,6 +517,20 @@ export function AppRoutes() {
         </AuthGuard>
       } />
 
+      {/* Manufaktur Routes */}
+      <Route path="/manufaktur/bom/tambah" element={
+        <AuthGuard><BOMForm /></AuthGuard>
+      } />
+      <Route path="/manufaktur/bom/:id/edit" element={
+        <AuthGuard><BOMForm /></AuthGuard>
+      } />
+      <Route path="/manufaktur/bom/:id" element={
+        <AuthGuard><BOMDetail /></AuthGuard>
+      } />
+      <Route path="/manufaktur/bom" element={
+        <AuthGuard><BOMList /></AuthGuard>
+      } />
+
       {/* Import Routes */}
       <Route path="/import/anggota" element={
         <AuthGuard>

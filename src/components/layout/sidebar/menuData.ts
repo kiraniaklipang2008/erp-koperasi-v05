@@ -165,6 +165,14 @@ export const menuSections: MenuSectionType[] = [
     ]
   },
   {
+    title: "Manufaktur",
+    icon: Factory,
+    tabs: ['manufaktur'],
+    items: [
+      { title: "Bill of Materials", path: "/manufaktur/bom", icon: ClipboardList },
+    ]
+  },
+  {
     title: "Pengaturan",
     icon: Settings,
     tabs: ['koperasi'],
