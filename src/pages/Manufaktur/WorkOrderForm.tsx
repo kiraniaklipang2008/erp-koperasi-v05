@@ -24,7 +24,7 @@ export default function WorkOrderForm() {
     bomId: "",
     quantity: 1,
     status: "Draft" as WOStatus,
-    priority: "Medium" as string,
+    priority: "Medium" as WOPriority,
     startDate: new Date().toISOString().split("T")[0],
     dueDate: "",
     assignedTo: "",
