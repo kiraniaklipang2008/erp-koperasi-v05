@@ -155,6 +155,7 @@ export const menuSections: MenuSectionType[] = [
   {
     title: "Akuntansi",
     icon: Calculator,
+    tabs: ['koperasi'],
     items: [
       { title: "Manajemen Akuntansi", path: "/akuntansi", icon: Layout },
       { title: "Chart of Accounts", path: "/akuntansi/chart-of-accounts", icon: Book },
