@@ -15,6 +15,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Link } from "react-router-dom";
 import { useBusinessTab } from "@/contexts/BusinessTabContext";
+import { cn } from "@/lib/utils";
 
 export function SidebarNav() {
   const location = useLocation();
