@@ -11,6 +11,7 @@ function App() {
     try {
       initializeCentralizedSync();
       seedDemoData();
+      seedManufakturData();
       console.log('✅ App initialization completed successfully');
     } catch (error) {
       console.error('❌ App initialization failed:', error);
