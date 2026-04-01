@@ -51,25 +51,33 @@ export function SidebarNav() {
       <SidebarContent className="overflow-hidden bg-gradient-to-b from-koperasi-light via-white to-gray-50">
         <ScrollArea className="h-full">
           <div className="p-2 sm:p-3">
-            {/* Quick Access Link */}
-            <div className="mb-4 sm:mb-5 group-data-[collapsible=icon]:hidden">
-              <SidebarMenuButton 
-                asChild
-                className="w-full justify-start gap-3 h-auto p-3 sm:p-4 bg-gradient-to-r from-koperasi-blue to-koperasi-green hover:from-koperasi-blue/90 hover:to-koperasi-green/90 text-white border-0 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 backdrop-blur-sm"
-              >
-                <Link to="/akses-cepat">
-                  <div className="flex items-center gap-3 w-full">
-                    <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-lg">
-                      <Zap className="h-5 w-5 sm:h-6 sm:w-6 text-white flex-shrink-0" />
-                    </div>
-                    <div className="text-left min-w-0 flex-1">
-                      <div className="font-bold text-white text-sm sm:text-base truncate drop-shadow-sm">Akses Cepat</div>
-                      <div className="text-xs sm:text-sm text-white/80 truncate">Quick access ke semua module</div>
-                    </div>
+            {/* Business Tab Switchers */}
+            <div className="mb-4 sm:mb-5 space-y-2 group-data-[collapsible=icon]:hidden">
+              {[
+                { id: 'koperasi' as const, label: 'Simpan Pinjam', icon: Building2 },
+                { id: 'retail' as const, label: 'Retail', icon: Store },
+                { id: 'manufaktur' as const, label: 'Manufaktur', icon: Factory },
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={cn(
+                    "w-full flex items-center gap-3 p-2.5 sm:p-3 rounded-xl transition-all duration-200 text-left",
+                    activeTab === tab.id
+                      ? "bg-gradient-to-r from-koperasi-blue to-koperasi-green text-white shadow-lg"
+                      : "bg-muted/50 text-muted-foreground hover:bg-muted"
+                  )}
+                >
+                  <div className={cn(
+                    "w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0",
+                    activeTab === tab.id ? "bg-white/20" : "bg-background"
+                  )}>
+                    <tab.icon className="h-4 w-4" />
                   </div>
-                </Link>
-              </SidebarMenuButton>
-              <Separator className="my-4 sm:my-5 bg-gray-200" />
+                  <span className="text-sm font-semibold truncate">{tab.label}</span>
+                </button>
+              ))}
+              <Separator className="mt-3 bg-gray-200" />
             </div>
             
             {/* Regular Menu Sections - filtered by active business tab */}
