@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { AppRoutes } from '@/routes/AppRoutes';
 import { initializeCentralizedSync } from './services/sync/centralizedSyncService';
 import { seedDemoData } from './services/seedDataService';
+import { seedManufakturData } from './services/manufaktur/seedManufakturData';
 import { BusinessTabProvider } from './contexts/BusinessTabContext';
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
     try {
       initializeCentralizedSync();
       seedDemoData();
+      seedManufakturData();
       console.log('✅ App initialization completed successfully');
     } catch (error) {
       console.error('❌ App initialization failed:', error);
