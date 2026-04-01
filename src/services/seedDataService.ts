@@ -99,6 +99,9 @@ export function seedDemoData(): void {
   // Mark seed as done
   saveToLocalStorage(SEED_KEY, true);
 
+  // Seed Manufaktur data
+  seedManufakturData();
+
   // Summary
   const allTx = getAllTransaksi();
   const allPg = getPengajuanList();
