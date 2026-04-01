@@ -113,9 +113,9 @@ export const menuSections: MenuSectionType[] = [
     ]
   },
   {
-    title: "KPRI Mart",
+    title: "Retail / POS",
     icon: Store,
-    hidden: true,
+    tabs: ['retail'],
     items: [
       { title: "Dashboard POS", path: "/pos", icon: LayoutDashboard },
       { 
