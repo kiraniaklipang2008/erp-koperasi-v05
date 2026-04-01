@@ -179,6 +179,7 @@ export const menuSections: MenuSectionType[] = [
   {
     title: "Impor Data",
     icon: Upload,
+    tabs: ['koperasi'],
     items: [
       { title: "Impor Anggota", path: "/import/anggota", icon: FileSpreadsheet },
       { title: "Impor Transaksi", path: "/import/transaksi", icon: FileSpreadsheet }
