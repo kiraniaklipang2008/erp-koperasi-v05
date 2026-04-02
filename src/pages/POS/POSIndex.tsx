@@ -64,7 +64,7 @@ export default function POSIndex() {
       icon: User,
       description: "Kelola data kasir",
       path: "/pos/kasir",
-      color: "bg-emerald-100 text-emerald-800",
+      color: "bg-blue-100 text-blue-800",
     },
     {
       title: "Kuitansi",
