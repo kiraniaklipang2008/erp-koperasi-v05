@@ -1,4 +1,5 @@
 
+// Koperasi-ERP App
 import React, { useEffect } from 'react';
 import { AppRoutes } from '@/routes/AppRoutes';
 import { initializeCentralizedSync } from './services/sync/centralizedSyncService';
