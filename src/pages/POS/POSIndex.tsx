@@ -71,7 +71,7 @@ export default function POSIndex() {
       icon: Receipt,
       description: "Cetak kuitansi pembayaran",
       path: "/pos/kuitansi",
-      color: "bg-teal-100 text-teal-800",
+      color: "bg-indigo-100 text-indigo-800",
     },
     {
       title: "Laporan Jual Beli",
