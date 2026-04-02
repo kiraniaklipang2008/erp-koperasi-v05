@@ -85,7 +85,7 @@ export default function POSIndex() {
       icon: LineChart,
       description: "Laporan keuangan rugi laba",
       path: "/pos/laporan-rugi-laba",
-      color: "bg-teal-100 text-teal-800",
+      color: "bg-indigo-100 text-indigo-800",
     },
   ];
 

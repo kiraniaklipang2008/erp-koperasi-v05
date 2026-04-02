@@ -90,7 +90,7 @@ const quickAccessModules: QuickAccessModule[] = [
     description: "Layanan keuangan koperasi",
     icon: CreditCard,
     color: "bg-green-500",
-    gradient: "from-green-500 to-emerald-600",
+    gradient: "from-blue-500 to-indigo-600",
     items: [
       {
         title: "Jenis Transaksi",
