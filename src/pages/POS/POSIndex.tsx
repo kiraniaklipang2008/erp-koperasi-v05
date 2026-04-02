@@ -29,7 +29,7 @@ export default function POSIndex() {
       icon: Truck,
       description: "Kelola data pemasok/supplier",
       path: "/pos/pemasok",
-      color: "bg-teal-100 text-teal-800",
+      color: "bg-indigo-100 text-indigo-800",
     },
     {
       title: "Pembelian",
