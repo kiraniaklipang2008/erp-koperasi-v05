@@ -36,7 +36,7 @@ export default function POSIndex() {
       icon: ShoppingCart,
       description: "Transaksi pembelian produk",
       path: "/pos/pembelian",
-      color: "bg-emerald-100 text-emerald-800",
+      color: "bg-blue-100 text-blue-800",
     },
     {
       title: "Daftar Penjualan",
