@@ -50,7 +50,7 @@ export default function POSIndex() {
       icon: Package,
       description: "Kelola stok dan produk",
       path: "/pos/stok",
-      color: "bg-emerald-100 text-emerald-800",
+      color: "bg-blue-100 text-blue-800",
     },
     {
       title: "Inventori",
