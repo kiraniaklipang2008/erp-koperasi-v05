@@ -30,7 +30,7 @@ export function ActionGrid({
       handler: onView, 
       icon: Eye, 
       tooltip: 'Lihat Detail',
-      className: 'border-emerald-200 bg-emerald-50 hover:bg-emerald-100 hover:border-emerald-300'
+      className: 'border-blue-200 bg-blue-50 hover:bg-blue-100 hover:border-blue-300'
     },
     { 
       key: 'edit', 
@@ -68,7 +68,7 @@ export function ActionGrid({
                 onClick={handler}
               >
                 <Icon className={`${iconSize} ${
-                  key === 'view' ? 'text-emerald-600' :
+                  key === 'view' ? 'text-blue-600' :
                   key === 'edit' ? 'text-blue-600' :
                   'text-red-600'
                 }`} />

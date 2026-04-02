@@ -85,8 +85,8 @@ export function AnggotaLoginForm() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-3 sm:p-4">
       <Card className="w-full max-w-sm sm:max-w-md shadow-lg sm:shadow-xl border-0 overflow-hidden relative mx-2 sm:mx-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-blue-500/10 z-0"></div>
-        <div className="absolute top-0 w-full h-1 bg-gradient-to-r from-green-500 via-teal-500 to-blue-500"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-indigo-500/10 z-0"></div>
+        <div className="absolute top-0 w-full h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-500"></div>
         
         <CardHeader className="space-y-1 text-center pb-2 relative z-10 px-4 sm:px-6 pt-6 sm:pt-8">
           <CardTitle className="text-xl sm:text-2xl font-bold tracking-tight">
@@ -137,7 +137,7 @@ export function AnggotaLoginForm() {
               
               <Button 
                 type="submit" 
-                className="w-full h-10 sm:h-12 text-sm sm:text-base bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 transition-all duration-300 shadow-md mt-4 sm:mt-6" 
+                className="w-full h-10 sm:h-12 text-sm sm:text-base bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-md mt-4 sm:mt-6" 
                 disabled={isLoading}
               >
                 {isLoading ? "Memproses..." : "Login"}

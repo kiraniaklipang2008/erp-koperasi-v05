@@ -55,7 +55,7 @@ export function ReceiptActions({ receiptRef, transaksi, onClose }: ReceiptAction
     <>
       <Button 
         variant="outline"
-        className="flex-1 gap-2 border-emerald-200 text-emerald-700 hover:bg-emerald-50"
+        className="flex-1 gap-2 border-blue-200 text-blue-700 hover:bg-blue-50"
         onClick={handlePrint}
       >
         <Printer className="h-4 w-4" /> Cetak Bukti
@@ -63,14 +63,14 @@ export function ReceiptActions({ receiptRef, transaksi, onClose }: ReceiptAction
       
       <Button 
         variant="outline"
-        className="flex-1 gap-2 border-emerald-200 text-emerald-700 hover:bg-emerald-50"
+        className="flex-1 gap-2 border-blue-200 text-blue-700 hover:bg-blue-50"
         onClick={handleShare}
       >
         <Share2 className="h-4 w-4" /> Bagikan
       </Button>
       
       <Button 
-        className="flex-1 gap-2 bg-emerald-600 hover:bg-emerald-700"
+        className="flex-1 gap-2 bg-blue-600 hover:bg-blue-700"
         onClick={onClose}
       >
         <Check className="h-4 w-4" /> Selesai

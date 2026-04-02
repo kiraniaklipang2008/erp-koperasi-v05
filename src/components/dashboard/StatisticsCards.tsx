@@ -27,25 +27,25 @@ export function StatisticsCards({
       title: "Total Anggota",
       value: totalAnggota.toString(),
       icon: Users,
-      gradient: "from-emerald-500 to-teal-600",
-      bgGradient: "from-emerald-50 to-teal-50",
-      borderColor: "border-emerald-200"
+      gradient: "from-blue-500 to-indigo-600",
+      bgGradient: "from-blue-50 to-indigo-50",
+      borderColor: "border-blue-200"
     },
     {
       title: "Total Simpanan",
       value: formatCurrency(totalSimpanan),
       icon: Wallet,
-      gradient: "from-emerald-500 to-teal-600", 
-      bgGradient: "from-emerald-50 to-teal-50",
-      borderColor: "border-emerald-200"
+      gradient: "from-blue-500 to-indigo-600", 
+      bgGradient: "from-blue-50 to-indigo-50",
+      borderColor: "border-blue-200"
     },
     {
       title: "Total Pinjaman",
       value: formatCurrency(totalPinjaman),
       icon: CreditCard,
-      gradient: "from-emerald-500 to-teal-600",
-      bgGradient: "from-emerald-50 to-teal-50", 
-      borderColor: "border-emerald-200"
+      gradient: "from-blue-500 to-indigo-600",
+      bgGradient: "from-blue-50 to-indigo-50", 
+      borderColor: "border-blue-200"
     }
   ];
 

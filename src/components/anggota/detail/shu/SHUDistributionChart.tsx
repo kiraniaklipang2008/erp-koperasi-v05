@@ -195,11 +195,11 @@ export function SHUDistributionChart({ data }: SHUDistributionChartProps) {
                 <div className="text-xs text-blue-600 font-medium">Total Kategori</div>
               </div>
               
-              <div className="bg-gradient-to-br from-emerald-50 to-emerald-100/50 backdrop-blur-sm p-4 rounded-xl border border-emerald-200/50 shadow-lg">
-                <div className="text-lg font-bold text-emerald-700 mb-1 truncate">
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 backdrop-blur-sm p-4 rounded-xl border border-blue-200/50 shadow-lg">
+                <div className="text-lg font-bold text-blue-700 mb-1 truncate">
                   {formatCurrency(chartData.reduce((sum, item) => sum + item.value, 0))}
                 </div>
-                <div className="text-xs text-emerald-600 font-medium">Total SHU</div>
+                <div className="text-xs text-blue-600 font-medium">Total SHU</div>
               </div>
               
               <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 backdrop-blur-sm p-4 rounded-xl border border-purple-200/50 shadow-lg">

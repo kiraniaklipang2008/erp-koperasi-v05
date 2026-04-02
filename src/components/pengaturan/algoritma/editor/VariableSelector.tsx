@@ -44,9 +44,9 @@ export function VariableSelector({
         {/* System Variables */}
         <div>
           <div className="flex items-center gap-2 mb-4">
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-emerald-50 rounded-full border border-emerald-200">
-              <Settings className="h-4 w-4 text-emerald-600" />
-              <span className="text-sm font-medium text-emerald-700">Variabel Sistem</span>
+            <div className="flex items-center gap-2 px-3 py-1.5 bg-blue-50 rounded-full border border-blue-200">
+              <Settings className="h-4 w-4 text-blue-600" />
+              <span className="text-sm font-medium text-blue-700">Variabel Sistem</span>
             </div>
             <Badge variant="secondary" className="text-xs">
               {availableVariables.length} tersedia
@@ -57,18 +57,18 @@ export function VariableSelector({
               <Button
                 key={variable.id}
                 variant="outline"
-                className="h-auto p-4 flex flex-col items-start gap-2 hover:bg-emerald-50 hover:border-emerald-300 transition-all duration-200 group border-2"
+                className="h-auto p-4 flex flex-col items-start gap-2 hover:bg-blue-50 hover:border-blue-300 transition-all duration-200 group border-2"
                 onClick={() => onVariableInsert(variable.id)}
                 title={variable.description}
               >
                 <div className="flex items-center gap-2 w-full">
-                  <Calculator className="h-4 w-4 text-emerald-600 group-hover:text-emerald-700" />
-                  <code className="text-xs font-mono bg-emerald-100 px-2 py-1 rounded text-emerald-800 group-hover:bg-emerald-200">
+                  <Calculator className="h-4 w-4 text-blue-600 group-hover:text-blue-700" />
+                  <code className="text-xs font-mono bg-blue-100 px-2 py-1 rounded text-blue-800 group-hover:bg-blue-200">
                     {variable.id}
                   </code>
                 </div>
                 <div className="text-left">
-                  <div className="font-medium text-sm text-gray-900 group-hover:text-emerald-900">
+                  <div className="font-medium text-sm text-gray-900 group-hover:text-blue-900">
                     {variable.label}
                   </div>
                   <div className="text-xs text-muted-foreground mt-1 line-clamp-2">

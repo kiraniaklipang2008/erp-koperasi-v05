@@ -71,9 +71,9 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				koperasi: {
-					blue: '#10B981',
-					green: '#10B981',
+			koperasi: {
+					blue: '#3B82F6',
+					green: '#60A5FA',
 					dark: '#1e293b',
 					light: '#f8fafc',
 					gray: '#94a3b8'

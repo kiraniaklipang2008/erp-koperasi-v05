@@ -32,7 +32,7 @@ export function PrintButton({
       onClick={handlePrint}
       variant={variant}
       size={size}
-      className={`gap-2 bg-emerald-600 hover:bg-emerald-700 text-white ${className}`}
+      className={`gap-2 bg-blue-600 hover:bg-blue-700 text-white ${className}`}
     >
       <Printer className="h-4 w-4" />
       Cetak Detail
