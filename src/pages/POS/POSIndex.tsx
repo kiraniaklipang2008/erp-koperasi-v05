@@ -57,7 +57,7 @@ export default function POSIndex() {
       icon: Archive,
       description: "Kelola inventaris barang",
       path: "/pos/inventori",
-      color: "bg-teal-100 text-teal-800",
+      color: "bg-indigo-100 text-indigo-800",
     },
     {
       title: "Kasir",
