@@ -78,7 +78,7 @@ export default function POSIndex() {
       icon: BarChart,
       description: "Laporan penjualan dan pembelian",
       path: "/pos/laporan-jual-beli",
-      color: "bg-emerald-100 text-emerald-800",
+      color: "bg-blue-100 text-blue-800",
     },
     {
       title: "Laporan Rugi Laba",
