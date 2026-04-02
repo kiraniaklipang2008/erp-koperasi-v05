@@ -89,7 +89,7 @@ const quickAccessModules: QuickAccessModule[] = [
     title: "Simpan Pinjam",
     description: "Layanan keuangan koperasi",
     icon: CreditCard,
-    color: "bg-green-500",
+    color: "bg-blue-500",
     gradient: "from-blue-500 to-indigo-600",
     items: [
       {
