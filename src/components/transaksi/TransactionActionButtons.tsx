@@ -33,7 +33,7 @@ export function TransactionActionButtons({
   return (
     <div className="flex gap-1">
       <Link to={getDetailPath()}>
-        <Button variant="outline" size={size} className="gap-1 border-emerald-200 text-emerald-700 hover:bg-emerald-50 hover:border-emerald-300">
+        <Button variant="outline" size={size} className="gap-1 border-blue-200 text-blue-700 hover:bg-blue-50 hover:border-blue-300">
           <Eye className="h-3 w-3" />
           Detail
         </Button>
