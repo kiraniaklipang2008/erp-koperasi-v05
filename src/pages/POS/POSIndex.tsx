@@ -43,7 +43,7 @@ export default function POSIndex() {
       icon: History,
       description: "Lihat semua transaksi penjualan",
       path: "/pos/penjualan-list",
-      color: "bg-teal-100 text-teal-800",
+      color: "bg-indigo-100 text-indigo-800",
     },
     {
       title: "Stok Barang",
