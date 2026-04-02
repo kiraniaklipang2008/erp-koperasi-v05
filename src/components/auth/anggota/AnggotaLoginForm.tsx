@@ -137,7 +137,7 @@ export function AnggotaLoginForm() {
               
               <Button 
                 type="submit" 
-                className="w-full h-10 sm:h-12 text-sm sm:text-base bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 transition-all duration-300 shadow-md mt-4 sm:mt-6" 
+                className="w-full h-10 sm:h-12 text-sm sm:text-base bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-md mt-4 sm:mt-6" 
                 disabled={isLoading}
               >
                 {isLoading ? "Memproses..." : "Login"}
