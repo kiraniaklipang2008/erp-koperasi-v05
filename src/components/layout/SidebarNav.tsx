@@ -52,34 +52,6 @@ export function SidebarNav() {
       <SidebarContent className="overflow-hidden bg-gradient-to-b from-koperasi-light via-white to-gray-50">
         <ScrollArea className="h-full">
           <div className="p-2 sm:p-3">
-            {/* Business Tab Switchers */}
-            <div className="mb-4 sm:mb-5 space-y-2 group-data-[collapsible=icon]:hidden">
-              {[
-                { id: 'koperasi' as const, label: 'Simpan Pinjam', icon: Building2 },
-                { id: 'retail' as const, label: 'Retail', icon: Store },
-                { id: 'manufaktur' as const, label: 'Manufaktur', icon: Factory },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={cn(
-                    "w-full flex items-center gap-3 p-2.5 sm:p-3 rounded-xl transition-all duration-200 text-left",
-                    activeTab === tab.id
-                      ? "bg-gradient-to-r from-koperasi-blue to-koperasi-green text-white shadow-lg"
-                      : "bg-muted/50 text-muted-foreground hover:bg-muted"
-                  )}
-                >
-                  <div className={cn(
-                    "w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0",
-                    activeTab === tab.id ? "bg-white/20" : "bg-background"
-                  )}>
-                    <tab.icon className="h-4 w-4" />
-                  </div>
-                  <span className="text-sm font-semibold truncate">{tab.label}</span>
-                </button>
-              ))}
-              <Separator className="mt-3 bg-gray-200" />
-            </div>
             
             {/* Regular Menu Sections - filtered by active business tab */}
             <div className="space-y-2 sm:space-y-3">
