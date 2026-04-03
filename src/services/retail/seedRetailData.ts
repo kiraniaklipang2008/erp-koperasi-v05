@@ -2,6 +2,7 @@
 import { getFromLocalStorage, saveToLocalStorage } from "@/utils/localStorage";
 import { generateId } from "@/lib/utils";
 import { subMonths, format } from "date-fns";
+import { initSampleProdukData } from "@/services/produk";
 
 const SEED_KEY = "retail_seed_v1_done";
 
@@ -18,6 +19,9 @@ export function seedRetailData(): void {
     console.log("✅ Retail seed data already applied");
     return;
   }
+
+  // Initialize product sample data first
+  initSampleProdukData();
 
   console.log("🌱 Seeding Retail demo data...");
 
