@@ -4,6 +4,7 @@ import { createPengajuan, approvePengajuan, getPengajuanList } from "./pengajuan
 import { createTransaksi } from "./transaksiService";
 import { getAllTransaksi } from "./transaksi/transaksiCore";
 import { seedManufakturData } from "./manufaktur/seedManufakturData";
+import { seedRetailData } from "./retail/seedRetailData";
 
 const SEED_KEY = "koperasi_seed_v1_done";
 
@@ -101,6 +102,9 @@ export function seedDemoData(): void {
 
   // Seed Manufaktur data
   seedManufakturData();
+
+  // Seed Retail data
+  seedRetailData();
 
   // Summary
   const allTx = getAllTransaksi();
