@@ -103,6 +103,9 @@ export function seedDemoData(): void {
   // Seed Manufaktur data
   seedManufakturData();
 
+  // Seed Retail data
+  seedRetailData();
+
   // Summary
   const allTx = getAllTransaksi();
   const allPg = getPengajuanList();
