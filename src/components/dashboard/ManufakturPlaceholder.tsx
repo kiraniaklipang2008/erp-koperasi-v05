@@ -64,51 +64,51 @@ export function ManufakturPlaceholder() {
       {/* Summary Cards */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
         <Card className="cursor-pointer hover:border-primary/40 transition-colors" onClick={() => navigate("/manufaktur/bom")}>
-          <CardContent className="pt-5 pb-4">
-            <div className="flex items-center gap-2 mb-2">
+          <CardContent className="pt-5 pb-4 text-center">
+            <div className="flex items-center justify-center gap-2 mb-2">
               <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center"><ClipboardList className="h-4 w-4 text-primary" /></div>
-              <span className="text-xs text-muted-foreground">BOM</span>
             </div>
+            <span className="text-xs text-muted-foreground">BOM</span>
             <p className="text-2xl font-bold">{bomList.length}</p>
             <p className="text-xs text-muted-foreground">{activeBOM} aktif</p>
           </CardContent>
         </Card>
         <Card className="cursor-pointer hover:border-primary/40 transition-colors" onClick={() => navigate("/manufaktur/work-orders")}>
-          <CardContent className="pt-5 pb-4">
-            <div className="flex items-center gap-2 mb-2">
+          <CardContent className="pt-5 pb-4 text-center">
+            <div className="flex items-center justify-center gap-2 mb-2">
               <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center"><Wrench className="h-4 w-4 text-primary" /></div>
-              <span className="text-xs text-muted-foreground">Work Orders</span>
             </div>
+            <span className="text-xs text-muted-foreground">Work Orders</span>
             <p className="text-2xl font-bold">{woStats.total}</p>
             <p className="text-xs text-muted-foreground">{woStats.inProgress} berjalan</p>
           </CardContent>
         </Card>
         <Card className="cursor-pointer hover:border-primary/40 transition-colors" onClick={() => navigate("/manufaktur/production-plans")}>
-          <CardContent className="pt-5 pb-4">
-            <div className="flex items-center gap-2 mb-2">
+          <CardContent className="pt-5 pb-4 text-center">
+            <div className="flex items-center justify-center gap-2 mb-2">
               <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center"><CalendarRange className="h-4 w-4 text-primary" /></div>
-              <span className="text-xs text-muted-foreground">Planning</span>
             </div>
+            <span className="text-xs text-muted-foreground">Planning</span>
             <p className="text-2xl font-bold">{ppStats.total}</p>
             <p className="text-xs text-muted-foreground">{ppStats.inProduction} produksi</p>
           </CardContent>
         </Card>
         <Card className="cursor-pointer hover:border-primary/40 transition-colors" onClick={() => navigate("/manufaktur/quality-control")}>
-          <CardContent className="pt-5 pb-4">
-            <div className="flex items-center gap-2 mb-2">
+          <CardContent className="pt-5 pb-4 text-center">
+            <div className="flex items-center justify-center gap-2 mb-2">
               <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center"><CheckSquare className="h-4 w-4 text-primary" /></div>
-              <span className="text-xs text-muted-foreground">QC</span>
             </div>
+            <span className="text-xs text-muted-foreground">QC</span>
             <p className="text-2xl font-bold">{qcStats.total}</p>
             <p className="text-xs text-muted-foreground">{qcStats.passed} lulus, {qcStats.failed} gagal</p>
           </CardContent>
         </Card>
         <Card className="cursor-pointer hover:border-primary/40 transition-colors" onClick={() => navigate("/manufaktur/inventory")}>
-          <CardContent className="pt-5 pb-4">
-            <div className="flex items-center gap-2 mb-2">
+          <CardContent className="pt-5 pb-4 text-center">
+            <div className="flex items-center justify-center gap-2 mb-2">
               <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center"><Warehouse className="h-4 w-4 text-primary" /></div>
-              <span className="text-xs text-muted-foreground">Inventory</span>
             </div>
+            <span className="text-xs text-muted-foreground">Inventory</span>
             <p className="text-2xl font-bold">{invStats.total}</p>
             <p className="text-xs text-muted-foreground">{invStats.lowStock > 0 ? `${invStats.lowStock} rendah` : 'Stok aman'}</p>
           </CardContent>
