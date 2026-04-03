@@ -20,6 +20,9 @@ export function seedRetailData(): void {
     return;
   }
 
+  // Initialize product sample data first
+  initSampleProdukData();
+
   console.log("🌱 Seeding Retail demo data...");
 
   const now = new Date();
