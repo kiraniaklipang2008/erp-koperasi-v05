@@ -22,35 +22,6 @@ export function KoperasiVisualDashboard() {
 
   return (
     <div className="p-4 bg-gradient-to-br from-koperasi-light via-koperasi-light to-koperasi-light min-h-screen">
-      {/* Header */}
-      <div className="mb-6">
-        <div className="flex justify-between items-center mb-4 p-4 bg-gradient-to-r from-koperasi-blue via-koperasi-green to-koperasi-blue rounded-lg shadow-lg text-white">
-          <div>
-            <h1 className="text-2xl font-bold mb-1">
-              Dashboard Visual Koperasi Simpan Pinjam
-            </h1>
-            <p className="text-koperasi-light text-base">
-              Analisis komprehensif data koperasi dengan visualisasi interaktif
-            </p>
-          </div>
-          <div className="flex gap-2">
-            <Button 
-              onClick={handleDownloadPNG} 
-              className="bg-white text-koperasi-blue hover:bg-koperasi-light shadow-md font-semibold px-3 py-2 text-sm"
-            >
-              <Download className="h-4 w-4 mr-1" />
-              PNG
-            </Button>
-            <Button 
-              onClick={handleDownloadPDF} 
-              className="bg-koperasi-green hover:bg-koperasi-green/90 text-white shadow-md font-semibold px-3 py-2 text-sm"
-            >
-              <FileDown className="h-4 w-4 mr-1" />
-              PDF
-            </Button>
-          </div>
-        </div>
-      </div>
 
       {/* Charts Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
