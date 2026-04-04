@@ -1,8 +1,6 @@
 
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Download, FileDown } from 'lucide-react';
 import { SimpananPieChart } from './charts/SimpananPieChart';
 import { PinjamanBarChart } from './charts/PinjamanBarChart';
 import { SHULineChart } from './charts/SHULineChart';
