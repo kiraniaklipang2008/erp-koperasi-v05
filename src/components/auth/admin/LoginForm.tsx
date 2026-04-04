@@ -1,9 +1,7 @@
 
-import { useState } from "react";
 import { LoginBranding } from "./LoginBranding";
 import { LoginCard } from "./LoginCard";
 import { useLoginForm } from "./useLoginForm";
-import { ZoomControls } from "@/components/ui/ZoomControls";
 
 interface LoginFormProps {
   title?: string;
@@ -11,7 +9,7 @@ interface LoginFormProps {
   onSuccessRedirect?: string;
   demoCredentials?: Array<{
     label: string;
-    username: string; // Keep as username for backward compatibility  
+    username: string;
     password: string;
   }>;
 }
@@ -22,47 +20,33 @@ export function LoginForm({
   onSuccessRedirect = "/",
   demoCredentials,
 }: LoginFormProps) {
-  const [zoomScale, setZoomScale] = useState(1);
-  
-  // Show all demo credentials including Super Admin
   const filteredDemoCredentials = demoCredentials;
   
   const { form, onSubmit, isLoading, handleDemoLogin } = useLoginForm({
     onSuccessRedirect,
   });
 
-  const handleZoomChange = (scale: number) => {
-    setZoomScale(scale);
-  };
-
   return (
-    <>
-      <ZoomControls onZoomChange={handleZoomChange} />
-      
-      <div 
-        className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex items-center justify-center p-3 sm:p-4 md:p-6 transition-transform duration-200 origin-center"
-        style={{ transform: `scale(${zoomScale})` }}
-      >
-        <div className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-center">
-          {/* Left Column - Branding - Hidden on mobile, shown on desktop */}
-          <div className="hidden lg:block">
-            <LoginBranding />
-          </div>
-          
-          {/* Right Column - Login Form */}
-          <div className="flex items-center justify-center">
-            <div className="w-full max-w-md px-2 sm:px-0">
-              <LoginCard
-                form={form}
-                onSubmit={onSubmit}
-                isLoading={isLoading}
-                demoCredentials={filteredDemoCredentials}
-                onDemoLogin={handleDemoLogin}
-              />
-            </div>
+    <div 
+      className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex items-center justify-center p-3 sm:p-4 md:p-6"
+    >
+      <div className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-center">
+        <div className="hidden lg:block">
+          <LoginBranding />
+        </div>
+        
+        <div className="flex items-center justify-center">
+          <div className="w-full max-w-md px-2 sm:px-0">
+            <LoginCard
+              form={form}
+              onSubmit={onSubmit}
+              isLoading={isLoading}
+              demoCredentials={filteredDemoCredentials}
+              onDemoLogin={handleDemoLogin}
+            />
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

@@ -4,7 +4,6 @@ import Header from "./Header";
 import { SidebarNav } from "./SidebarNav";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/toaster";
-import { ZoomControls } from "@/components/ui/ZoomControls";
 import "@/styles/form-styles.css";
 
 type LayoutProps = {
@@ -13,12 +12,7 @@ type LayoutProps = {
 };
 
 export default function Layout({ children, pageTitle }: LayoutProps) {
-  // Set document title when page changes
   document.title = `${pageTitle} | Koperasi-ERP`;
-  
-  const handleZoomChange = (scale: number) => {
-    document.body.style.zoom = scale.toString();
-  };
   
   return (
     <SidebarProvider defaultOpen={true}>
@@ -35,7 +29,6 @@ export default function Layout({ children, pageTitle }: LayoutProps) {
           </main>
         </div>
       </div>
-      <ZoomControls onZoomChange={handleZoomChange} initialScale={1} />
       <Toaster />
     </SidebarProvider>
   );
