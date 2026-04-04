@@ -64,13 +64,6 @@ export type MenuSectionType = {
 
 export const menuSections: MenuSectionType[] = [
   {
-    title: "Menu Utama",
-    icon: LayoutDashboard,
-    items: [
-      { title: "Dashboard", path: "/dashboard", icon: LayoutDashboard },
-    ]
-  },
-  {
     title: "Master Data",
     icon: List,
     tabs: ['koperasi'],
