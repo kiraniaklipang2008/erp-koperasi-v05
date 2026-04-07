@@ -28,6 +28,18 @@ const businessTabs: { id: BusinessTab; label: string; icon: React.ElementType }[
 export default function Header({ pageTitle }: HeaderProps) {
   const { toggleSidebar } = useSidebar();
   const { activeTab, setActiveTab } = useBusinessTab();
+  const navigate = useNavigate();
+
+  const handleTabClick = (tabId: BusinessTab) => {
+    setActiveTab(tabId);
+    if (tabId === 'retail') {
+      navigate('/pos');
+    } else if (tabId === 'koperasi') {
+      navigate('/dashboard');
+    } else if (tabId === 'manufaktur') {
+      navigate('/manufaktur/bom');
+    }
+  };
 
   return (
     <header className="bg-white border-b flex-shrink-0">
