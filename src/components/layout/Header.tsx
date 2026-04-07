@@ -13,6 +13,7 @@ import NotificationBadge from "./NotificationBadge";
 import { useSidebar } from "@/components/ui/sidebar";
 import { useBusinessTab, BusinessTab } from "@/contexts/BusinessTabContext";
 import { cn } from "@/lib/utils";
+import { useNavigate } from "react-router-dom";
 
 type HeaderProps = {
   pageTitle: string;
