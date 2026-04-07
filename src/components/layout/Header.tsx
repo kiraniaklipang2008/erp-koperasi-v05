@@ -90,7 +90,7 @@ export default function Header({ pageTitle }: HeaderProps) {
           return (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => handleTabClick(tab.id)}
               className={cn(
                 "flex items-center gap-1.5 px-3 sm:px-4 py-2.5 text-xs sm:text-sm font-medium transition-all duration-200 border-b-2 -mb-[1px]",
                 isActive
