@@ -99,6 +99,7 @@ import ReturPOS from '@/pages/POS/ReturPOS';
 import RiwayatTransaksi from '@/pages/POS/RiwayatTransaksi';
 
 // Manufaktur
+import ManufakturDashboard from '@/pages/Manufaktur/ManufakturDashboard';
 import BOMList from '@/pages/Manufaktur/BOMList';
 import BOMForm from '@/pages/Manufaktur/BOMForm';
 import BOMDetail from '@/pages/Manufaktur/BOMDetail';
@@ -528,6 +529,9 @@ export function AppRoutes() {
       } />
 
       {/* Manufaktur Routes */}
+      <Route path="/manufaktur" element={
+        <AuthGuard><ManufakturDashboard /></AuthGuard>
+      } />
       <Route path="/manufaktur/bom/tambah" element={
         <AuthGuard><BOMForm /></AuthGuard>
       } />
