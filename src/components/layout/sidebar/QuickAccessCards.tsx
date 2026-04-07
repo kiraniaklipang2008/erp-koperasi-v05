@@ -207,7 +207,7 @@ const quickAccessModules: QuickAccessModule[] = [
     gradient: "from-slate-500 to-gray-600",
     items: [
       {
-        title: "Pengaturan Koperasi",
+        title: "Koperasi",
         description: "Konfigurasi umum sistem",
         icon: Cog,
         path: "/pengaturan",
@@ -218,13 +218,13 @@ const quickAccessModules: QuickAccessModule[] = [
   {
     id: "algoritma",
     title: "Algoritma",
-    description: "Pengaturan algoritma SHU",
+    description: "Pengaturan rumus SHU",
     icon: Zap,
     color: "bg-yellow-500",
     gradient: "from-yellow-500 to-orange-500",
     items: [
       {
-        title: "Algoritma SHU & THR",
+        title: "Rumus SHU",
         description: "Konfigurasi algoritma perhitungan",
         icon: Zap,
         path: "/pengaturan/algoritma",

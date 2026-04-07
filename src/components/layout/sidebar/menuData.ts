@@ -180,9 +180,9 @@ export const menuSections: MenuSectionType[] = [
     icon: Settings,
     tabs: ['koperasi'],
     items: [
-      { title: "Pengaturan Koperasi", path: "/pengaturan", icon: Cog },
-      { title: "Pengguna dan Peran", path: "/pengaturan/pengguna-peran", icon: Users },
-      { title: "Algoritma SHU & THR", path: "/pengaturan/algoritma", icon: Calculator },
+      { title: "Koperasi", path: "/pengaturan", icon: Cog },
+      { title: "Pengguna", path: "/pengaturan/pengguna-peran", icon: Users },
+      { title: "Rumus SHU", path: "/pengaturan/algoritma", icon: Calculator },
       { title: "Reset Data", path: "/pengaturan/reset-data", icon: RotateCcw },
       { title: "Audit Trail", path: "/pengaturan/audit-trail", icon: Shield }
     ]
