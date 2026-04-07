@@ -123,50 +123,50 @@ export default function ManufakturDashboard() {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
           <Card className="cursor-pointer hover:border-primary/40 transition-colors" onClick={() => navigate("/manufaktur/bom")}>
             <CardContent className="pt-5 pb-4 text-center">
-              <div className="flex items-center justify-center mb-2">
-                <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center"><ClipboardList className="h-4 w-4 text-primary" /></div>
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <div className="h-7 w-7 rounded-lg bg-primary/10 flex items-center justify-center"><ClipboardList className="h-3.5 w-3.5 text-primary" /></div>
+                <span className="text-xs font-medium text-muted-foreground">BOM</span>
               </div>
-              <span className="text-xs text-muted-foreground">BOM</span>
               <p className="text-2xl font-bold">{boms.length}</p>
               <p className="text-xs text-muted-foreground">{boms.filter(b => b.status === 'Active').length} aktif</p>
             </CardContent>
           </Card>
           <Card className="cursor-pointer hover:border-primary/40 transition-colors" onClick={() => navigate("/manufaktur/work-orders")}>
             <CardContent className="pt-5 pb-4 text-center">
-              <div className="flex items-center justify-center mb-2">
-                <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center"><Wrench className="h-4 w-4 text-primary" /></div>
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <div className="h-7 w-7 rounded-lg bg-primary/10 flex items-center justify-center"><Wrench className="h-3.5 w-3.5 text-primary" /></div>
+                <span className="text-xs font-medium text-muted-foreground">Work Orders</span>
               </div>
-              <span className="text-xs text-muted-foreground">Work Orders</span>
               <p className="text-2xl font-bold">{wos.length}</p>
               <p className="text-xs text-muted-foreground">{wos.filter(w => w.status === 'In Progress').length} berjalan</p>
             </CardContent>
           </Card>
           <Card className="cursor-pointer hover:border-primary/40 transition-colors" onClick={() => navigate("/manufaktur/production-plans")}>
             <CardContent className="pt-5 pb-4 text-center">
-              <div className="flex items-center justify-center mb-2">
-                <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center"><CalendarRange className="h-4 w-4 text-primary" /></div>
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <div className="h-7 w-7 rounded-lg bg-primary/10 flex items-center justify-center"><CalendarRange className="h-3.5 w-3.5 text-primary" /></div>
+                <span className="text-xs font-medium text-muted-foreground">Planning</span>
               </div>
-              <span className="text-xs text-muted-foreground">Planning</span>
               <p className="text-2xl font-bold">{pps.length}</p>
               <p className="text-xs text-muted-foreground">{pps.filter(p => p.status === 'In Production').length} produksi</p>
             </CardContent>
           </Card>
           <Card className="cursor-pointer hover:border-primary/40 transition-colors" onClick={() => navigate("/manufaktur/quality-control")}>
             <CardContent className="pt-5 pb-4 text-center">
-              <div className="flex items-center justify-center mb-2">
-                <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center"><CheckSquare className="h-4 w-4 text-primary" /></div>
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <div className="h-7 w-7 rounded-lg bg-primary/10 flex items-center justify-center"><CheckSquare className="h-3.5 w-3.5 text-primary" /></div>
+                <span className="text-xs font-medium text-muted-foreground">QC</span>
               </div>
-              <span className="text-xs text-muted-foreground">QC</span>
               <p className="text-2xl font-bold">{qcs.length}</p>
               <p className="text-xs text-muted-foreground">{qcs.filter(q => q.status === 'Passed').length} lulus</p>
             </CardContent>
           </Card>
           <Card className="cursor-pointer hover:border-primary/40 transition-colors" onClick={() => navigate("/manufaktur/inventory")}>
             <CardContent className="pt-5 pb-4 text-center">
-              <div className="flex items-center justify-center mb-2">
-                <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center"><Warehouse className="h-4 w-4 text-primary" /></div>
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <div className="h-7 w-7 rounded-lg bg-primary/10 flex items-center justify-center"><Warehouse className="h-3.5 w-3.5 text-primary" /></div>
+                <span className="text-xs font-medium text-muted-foreground">Inventory</span>
               </div>
-              <span className="text-xs text-muted-foreground">Inventory</span>
               <p className="text-2xl font-bold">{inventory.length}</p>
               <p className="text-xs text-muted-foreground">{lowStock.length > 0 ? `${lowStock.length} rendah` : 'Stok aman'}</p>
             </CardContent>
@@ -174,8 +174,8 @@ export default function ManufakturDashboard() {
           <Card>
             <CardContent className="pt-5 pb-4">
               <div className="flex items-center gap-2 mb-2">
-                <TrendingUp className="h-4 w-4 text-primary" />
-                <span className="text-xs text-muted-foreground">Nilai Inventory</span>
+                <div className="h-7 w-7 rounded-lg bg-primary/10 flex items-center justify-center"><TrendingUp className="h-3.5 w-3.5 text-primary" /></div>
+                <span className="text-xs font-medium text-muted-foreground">Nilai Inventory</span>
               </div>
               <p className="text-lg font-bold">{formatCurrency(totalInvValue)}</p>
               <p className="text-xs text-muted-foreground">total bahan baku</p>
