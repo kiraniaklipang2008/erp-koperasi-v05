@@ -37,7 +37,7 @@ export default function Header({ pageTitle }: HeaderProps) {
     } else if (tabId === 'koperasi') {
       navigate('/dashboard');
     } else if (tabId === 'manufaktur') {
-      navigate('/manufaktur/bom');
+      navigate('/manufaktur');
     }
   };
 
