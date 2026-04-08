@@ -77,6 +77,7 @@ export function SidebarNav() {
           <SidebarMenuButton 
             variant="outline"
             tooltip="Keluar"
+            onClick={handleLogout}
             className="w-full justify-start bg-gradient-to-r from-red-50 to-red-100 hover:from-red-100 hover:to-red-200 text-red-700 hover:text-red-800 border-2 border-red-200 hover:border-red-300 text-sm rounded-xl transition-all duration-200 shadow-md hover:shadow-lg"
           >
             <LogOut className="h-4 w-4 flex-shrink-0" />
