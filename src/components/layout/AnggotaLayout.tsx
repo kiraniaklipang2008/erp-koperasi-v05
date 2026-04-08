@@ -1,13 +1,11 @@
 
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { LogOut, User, Lock, Menu } from "lucide-react";
+import { LogOut, Lock, Menu, ChevronLeft, Bell, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useToast } from "@/components/ui/use-toast";
 import { logoutUser, getCurrentUser } from "@/services/authService";
-import { useState } from "react";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import "@/styles/form-styles.css";
 
 type AnggotaLayoutProps = {
@@ -21,8 +19,7 @@ export default function AnggotaLayout({ children, pageTitle }: AnggotaLayoutProp
   const currentUser = getCurrentUser();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
-  // Set document title when page changes
-  document.title = `${pageTitle} | Profil Anggota`;
+  document.title = `${pageTitle} | Koperasi-ERP`;
   
   const handleLogout = () => {
     logoutUser();
@@ -30,7 +27,7 @@ export default function AnggotaLayout({ children, pageTitle }: AnggotaLayoutProp
       title: "Logout berhasil",
       description: "Anda telah keluar dari sistem",
     });
-    navigate("/anggota-login");
+    navigate("/anggota/login");
     setIsMenuOpen(false);
   };
   
@@ -38,107 +35,133 @@ export default function AnggotaLayout({ children, pageTitle }: AnggotaLayoutProp
     navigate("/anggota/change-password");
     setIsMenuOpen(false);
   };
-  
-  const MobileMenuContent = () => (
-    <div className="flex flex-col space-y-4 p-4">
-      <div className="flex items-center space-x-3 pb-4 border-b">
-        <Avatar className="h-10 w-10">
-          <AvatarImage src="" />
-          <AvatarFallback className="bg-primary text-white">
-            {currentUser?.nama?.charAt(0) || 'A'}
-          </AvatarFallback>
-        </Avatar>
-        <div>
-          <h3 className="font-medium text-sm">{currentUser?.nama}</h3>
-          <p className="text-xs text-muted-foreground">ID: {currentUser?.anggotaId}</p>
-        </div>
-      </div>
-      
-      <Button
-        variant="outline"
-        className="justify-start"
-        onClick={handleChangePassword}
-      >
-        <Lock className="mr-2 h-4 w-4" />
-        Ubah Password
-      </Button>
-      
-      <Button
-        variant="ghost"
-        className="justify-start text-red-500 hover:text-red-700 hover:bg-red-50"
-        onClick={handleLogout}
-      >
-        <LogOut className="mr-2 h-4 w-4" />
-        Keluar
-      </Button>
-    </div>
-  );
+
+  const initials = currentUser?.nama
+    ?.split(" ")
+    .map((n: string) => n[0])
+    .slice(0, 2)
+    .join("")
+    .toUpperCase() || "A";
   
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-white shadow-sm py-3 sm:py-4 px-4 sm:px-6 mb-4 sm:mb-6">
-        <div className="container mx-auto flex justify-between items-center">
-          <div className="flex items-center space-x-3 sm:space-x-4">
-            <Avatar className="h-8 w-8 sm:h-10 sm:w-10">
-              <AvatarImage src="" />
-              <AvatarFallback className="bg-primary text-white text-xs sm:text-sm">
-                {currentUser?.nama?.charAt(0) || 'A'}
-              </AvatarFallback>
-            </Avatar>
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 flex flex-col max-w-lg mx-auto relative">
+      {/* Status bar spacer for native feel */}
+      <div className="h-[env(safe-area-inset-top,0px)]" />
+      
+      {/* Premium Header */}
+      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100">
+        <div className="flex items-center justify-between px-4 py-3">
+          <div className="flex items-center gap-3">
+            <div className="relative">
+              <Avatar className="h-10 w-10 ring-2 ring-blue-500/20 ring-offset-2">
+                <AvatarImage src="" />
+                <AvatarFallback className="bg-gradient-to-br from-blue-500 to-indigo-600 text-white text-sm font-semibold">
+                  {initials}
+                </AvatarFallback>
+              </Avatar>
+              <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-400 rounded-full border-2 border-white" />
+            </div>
             <div>
-              <h1 className="text-base sm:text-lg font-medium truncate">{currentUser?.nama}</h1>
-              <p className="text-xs sm:text-sm text-muted-foreground">ID: {currentUser?.anggotaId}</p>
+              <p className="text-xs text-muted-foreground">Selamat datang,</p>
+              <h1 className="text-sm font-semibold text-foreground leading-tight truncate max-w-[180px]">
+                {currentUser?.nama}
+              </h1>
             </div>
           </div>
           
-          {/* Desktop Menu */}
-          <div className="hidden sm:flex items-center space-x-2">
-            <Button
-              variant="outline"
-              size="sm"
-              className="flex items-center"
-              onClick={handleChangePassword}
-            >
-              <Lock className="mr-1 h-4 w-4" />
-              Ubah Password
-            </Button>
-            
+          <div className="flex items-center gap-1">
             <Button
               variant="ghost"
-              size="sm"
-              className="flex items-center text-red-500 hover:text-red-700 hover:bg-red-50"
-              onClick={handleLogout}
+              size="icon"
+              className="h-9 w-9 rounded-full text-muted-foreground hover:text-foreground"
             >
-              <LogOut className="mr-1 h-4 w-4" />
-              Keluar
+              <Bell className="h-4.5 w-4.5" />
             </Button>
-          </div>
-          
-          {/* Mobile Menu */}
-          <div className="sm:hidden">
-            <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="sm" className="p-2">
-                  <Menu className="h-5 w-5" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="right" className="w-64">
-                <MobileMenuContent />
-              </SheetContent>
-            </Sheet>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-9 w-9 rounded-full text-muted-foreground hover:text-foreground"
+              onClick={() => setIsMenuOpen(true)}
+            >
+              <Menu className="h-4.5 w-4.5" />
+            </Button>
           </div>
         </div>
       </header>
+
+      {/* Slide-over Menu */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-[100]">
+          <div 
+            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+            onClick={() => setIsMenuOpen(false)}
+          />
+          <div className="absolute right-0 top-0 bottom-0 w-72 bg-white shadow-2xl animate-in slide-in-from-right duration-300">
+            <div className="p-5">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="font-semibold text-foreground">Menu</h3>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8 rounded-full"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <X className="h-4 w-4" />
+                </Button>
+              </div>
+              
+              {/* Profile card */}
+              <div className="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl p-4 mb-6 text-white">
+                <div className="flex items-center gap-3">
+                  <Avatar className="h-12 w-12 ring-2 ring-white/30">
+                    <AvatarFallback className="bg-white/20 text-white font-semibold">
+                      {initials}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <p className="font-medium text-sm">{currentUser?.nama}</p>
+                    <p className="text-xs text-white/70">ID: {currentUser?.anggotaId}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-1">
+                <button
+                  onClick={handleChangePassword}
+                  className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-sm text-foreground hover:bg-slate-50 transition-colors"
+                >
+                  <div className="h-9 w-9 rounded-full bg-slate-100 flex items-center justify-center">
+                    <Lock className="h-4 w-4 text-slate-600" />
+                  </div>
+                  <span>Ubah Password</span>
+                </button>
+                
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-sm text-red-500 hover:bg-red-50 transition-colors"
+                >
+                  <div className="h-9 w-9 rounded-full bg-red-50 flex items-center justify-center">
+                    <LogOut className="h-4 w-4 text-red-500" />
+                  </div>
+                  <span>Keluar</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       
-      <main className="container mx-auto px-3 sm:px-4 py-4 sm:py-6">
-        <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">{pageTitle}</h2>
+      {/* Main Content */}
+      <main className="flex-1 px-4 py-4 pb-8">
         {children}
       </main>
       
-      <footer className="bg-white border-t py-3 sm:py-4 text-center text-xs sm:text-sm text-gray-500 mt-8">
-        <div className="container mx-auto">
-          <p>© {new Date().getFullYear()} Koperasi-ERP. Hak Cipta Dilindungi.</p>
-        </div>
+      {/* Bottom safe area */}
+      <div className="h-[env(safe-area-inset-bottom,0px)]" />
+      
+      {/* Footer */}
+      <footer className="text-center text-[11px] text-muted-foreground py-4 border-t border-slate-100 bg-white/50">
+        © {new Date().getFullYear()} Koperasi-ERP
       </footer>
     </div>
   );
