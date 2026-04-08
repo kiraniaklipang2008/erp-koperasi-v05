@@ -85,7 +85,10 @@ export default function Header({ pageTitle }: HeaderProps) {
               <DropdownMenuItem className="text-sm">Profil</DropdownMenuItem>
               <DropdownMenuItem className="text-sm">Pengaturan</DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="text-sm">Keluar</DropdownMenuItem>
+              <DropdownMenuItem className="text-sm text-destructive" onClick={handleLogout}>
+                <LogOut className="h-4 w-4 mr-2" />
+                Keluar
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

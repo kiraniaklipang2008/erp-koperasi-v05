@@ -1,5 +1,5 @@
 
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { LogOut, PiggyBank } from "lucide-react";
 import {
   Sidebar,
@@ -13,6 +13,8 @@ import { menuSections } from "./sidebar/menuData";
 import { SidebarMenuSection } from "./sidebar/SidebarMenuSection";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useBusinessTab } from "@/contexts/BusinessTabContext";
+import { logoutUser } from "@/services/authService";
+import { useToast } from "@/components/ui/use-toast";
 
 export function SidebarNav() {
   const location = useLocation();
