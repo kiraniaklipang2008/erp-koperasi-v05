@@ -18,7 +18,15 @@ import { useToast } from "@/components/ui/use-toast";
 
 export function SidebarNav() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { activeTab } = useBusinessTab();
+  const { toast } = useToast();
+
+  const handleLogout = () => {
+    logoutUser();
+    toast({ title: "Logout berhasil", description: "Anda telah keluar dari sistem" });
+    navigate("/login");
+  };
 
   // Filter menu sections by active business tab
   const visibleMenuSections = menuSections.filter(section => {
