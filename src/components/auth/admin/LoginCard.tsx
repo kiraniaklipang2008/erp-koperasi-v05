@@ -49,7 +49,10 @@ export function LoginCard({
         )}
       </CardContent>
       
-      <CardFooter className="px-4 sm:px-6 md:px-8 pb-4 pt-0">
+      <CardFooter className="px-4 sm:px-6 md:px-8 pb-4 pt-0 flex flex-col gap-3">
+        <a href="/anggota/login" className="text-xs text-blue-600 hover:underline">
+          Login sebagai Anggota
+        </a>
         <p className="text-xs text-center text-koperasi-gray leading-relaxed w-full">
           Koperasi-ERP @2025 - All rights reserved
         </p>
