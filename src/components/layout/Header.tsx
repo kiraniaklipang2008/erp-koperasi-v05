@@ -31,6 +31,13 @@ export default function Header({ pageTitle }: HeaderProps) {
   const { toggleSidebar } = useSidebar();
   const { activeTab, setActiveTab } = useBusinessTab();
   const navigate = useNavigate();
+  const { toast } = useToast();
+
+  const handleLogout = () => {
+    logoutUser();
+    toast({ title: "Logout berhasil", description: "Anda telah keluar dari sistem" });
+    navigate("/login");
+  };
 
   const handleTabClick = (tabId: BusinessTab) => {
     setActiveTab(tabId);
