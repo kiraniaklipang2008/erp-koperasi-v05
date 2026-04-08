@@ -1,5 +1,4 @@
 
-import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { 
   DropdownMenu, 
@@ -9,12 +8,14 @@ import {
   DropdownMenuSeparator, 
   DropdownMenuTrigger 
 } from "@/components/ui/dropdown-menu";
-import { User, Menu, PiggyBank, Store, Factory } from "lucide-react";
+import { User, Menu, PiggyBank, Store, Factory, LogOut } from "lucide-react";
 import NotificationBadge from "./NotificationBadge";
 import { useSidebar } from "@/components/ui/sidebar";
 import { useBusinessTab, BusinessTab } from "@/contexts/BusinessTabContext";
 import { cn } from "@/lib/utils";
 import { useNavigate } from "react-router-dom";
+import { logoutUser } from "@/services/authService";
+import { useToast } from "@/components/ui/use-toast";
 
 type HeaderProps = {
   pageTitle: string;
