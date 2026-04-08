@@ -1,5 +1,5 @@
 
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { LogOut, PiggyBank } from "lucide-react";
 import {
   Sidebar,
@@ -13,10 +13,20 @@ import { menuSections } from "./sidebar/menuData";
 import { SidebarMenuSection } from "./sidebar/SidebarMenuSection";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useBusinessTab } from "@/contexts/BusinessTabContext";
+import { logoutUser } from "@/services/authService";
+import { useToast } from "@/components/ui/use-toast";
 
 export function SidebarNav() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { activeTab } = useBusinessTab();
+  const { toast } = useToast();
+
+  const handleLogout = () => {
+    logoutUser();
+    toast({ title: "Logout berhasil", description: "Anda telah keluar dari sistem" });
+    navigate("/login");
+  };
 
   // Filter menu sections by active business tab
   const visibleMenuSections = menuSections.filter(section => {
@@ -67,6 +77,7 @@ export function SidebarNav() {
           <SidebarMenuButton 
             variant="outline"
             tooltip="Keluar"
+            onClick={handleLogout}
             className="w-full justify-start bg-gradient-to-r from-red-50 to-red-100 hover:from-red-100 hover:to-red-200 text-red-700 hover:text-red-800 border-2 border-red-200 hover:border-red-300 text-sm rounded-xl transition-all duration-200 shadow-md hover:shadow-lg"
           >
             <LogOut className="h-4 w-4 flex-shrink-0" />

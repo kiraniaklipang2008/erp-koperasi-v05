@@ -8,12 +8,14 @@ import {
   DropdownMenuSeparator, 
   DropdownMenuTrigger 
 } from "@/components/ui/dropdown-menu";
-import { User, Menu, PiggyBank, Store, Factory } from "lucide-react";
+import { User, Menu, PiggyBank, Store, Factory, LogOut } from "lucide-react";
 import NotificationBadge from "./NotificationBadge";
 import { useSidebar } from "@/components/ui/sidebar";
 import { useBusinessTab, BusinessTab } from "@/contexts/BusinessTabContext";
 import { cn } from "@/lib/utils";
 import { useNavigate } from "react-router-dom";
+import { logoutUser } from "@/services/authService";
+import { useToast } from "@/components/ui/use-toast";
 
 type HeaderProps = {
   pageTitle: string;
@@ -29,6 +31,13 @@ export default function Header({ pageTitle }: HeaderProps) {
   const { toggleSidebar } = useSidebar();
   const { activeTab, setActiveTab } = useBusinessTab();
   const navigate = useNavigate();
+  const { toast } = useToast();
+
+  const handleLogout = () => {
+    logoutUser();
+    toast({ title: "Logout berhasil", description: "Anda telah keluar dari sistem" });
+    navigate("/login");
+  };
 
   const handleTabClick = (tabId: BusinessTab) => {
     setActiveTab(tabId);
@@ -76,7 +85,10 @@ export default function Header({ pageTitle }: HeaderProps) {
               <DropdownMenuItem className="text-sm">Profil</DropdownMenuItem>
               <DropdownMenuItem className="text-sm">Pengaturan</DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="text-sm">Keluar</DropdownMenuItem>
+              <DropdownMenuItem className="text-sm text-destructive" onClick={handleLogout}>
+                <LogOut className="h-4 w-4 mr-2" />
+                Keluar
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
